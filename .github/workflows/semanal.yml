@@ -1,0 +1,43 @@
+name: Proceso semanal CaribeSat
+on:
+  schedule:
+    - cron: "0 11 * * 1"   # lunes 6:00 a. m. hora Colombia
+  workflow_dispatch:
+    inputs:
+      region:
+        description: "Región para video (vacío = rotación semanal)"
+        required: false
+permissions:
+  contents: write
+jobs:
+  procesar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
+      GEE_SERVICE_ACCOUNT_JSON: ${{ secrets.GEE_SERVICE_ACCOUNT_JSON }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -r requirements.txt
+      - name: Series + video
+        run: |
+          if [ -n "${{ github.event.inputs.region }}" ]; then
+            python -m caribesat.pipeline series
+            python -m caribesat.pipeline video --region "${{ github.event.inputs.region }}" --upload
+          else
+            python -m caribesat.pipeline semanal --upload
+          fi
+      - uses: actions/upload-artifact@v4
+        with: { name: videos, path: out/**/*.mp4, retention-days: 14 }
+      - name: Publicar datos en la web
+        run: |
+          git config user.name "caribesat-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add web/static/data
+          git diff --cached --quiet || git commit -m "Datos semanales $(date +%F)"
+          git push
