@@ -26,15 +26,19 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Series + video
         run: |
+          # sube a YouTube solo cuando ya estén configurados sus secretos
+          UP=""; if [ -n "$YT_REFRESH_TOKEN" ]; then UP="--upload"; fi
           if [ -n "${{ github.event.inputs.region }}" ]; then
             python -m caribesat.pipeline series
-            python -m caribesat.pipeline video --region "${{ github.event.inputs.region }}" --upload
+            python -m caribesat.pipeline video --region "${{ github.event.inputs.region }}" $UP
           else
-            python -m caribesat.pipeline semanal --upload
+            python -m caribesat.pipeline semanal $UP
           fi
       - uses: actions/upload-artifact@v4
-        with: { name: videos, path: out/**/*.mp4, retention-days: 14 }
+        if: always()
+        with: { name: videos, path: out/**/*.mp4, retention-days: 14, if-no-files-found: ignore }
       - name: Publicar datos en la web
+        if: always()
         run: |
           git config user.name "caribesat-bot"
           git config user.email "bot@users.noreply.github.com"
