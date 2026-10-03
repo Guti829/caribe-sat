@@ -1,0 +1,4299 @@
+{
+ "region": {
+  "id": "cartagena",
+  "nombre": "Cartagena",
+  "grupo": "Capitales",
+  "tema": "Crecimiento urbano",
+  "bbox": [
+   -75.57,
+   10.33,
+   -75.43,
+   10.47
+  ],
+  "sensor": "landsat",
+  "capa_video": "rgb",
+  "metrica": "urbano",
+  "anio_inicio": 1990,
+  "paso_anios": 2
+ },
+ "actualizado": "2026-10-03T21:42+00:00",
+ "lluvia": [
+  {
+   "fecha": "1991-01",
+   "valor": 0.0,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "1991-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "1991-03",
+   "valor": 1.3,
+   "anomalia": -1.9
+  },
+  {
+   "fecha": "1991-04",
+   "valor": 29.4,
+   "anomalia": -6.7
+  },
+  {
+   "fecha": "1991-05",
+   "valor": 115.0,
+   "anomalia": -2.3
+  },
+  {
+   "fecha": "1991-06",
+   "valor": 86.5,
+   "anomalia": -25.8
+  },
+  {
+   "fecha": "1991-07",
+   "valor": 50.3,
+   "anomalia": -68.8
+  },
+  {
+   "fecha": "1991-08",
+   "valor": 42.1,
+   "anomalia": -79.3
+  },
+  {
+   "fecha": "1991-09",
+   "valor": 120.8,
+   "anomalia": -10.5
+  },
+  {
+   "fecha": "1991-10",
+   "valor": 132.5,
+   "anomalia": -93.2
+  },
+  {
+   "fecha": "1991-11",
+   "valor": 72.6,
+   "anomalia": -74.5
+  },
+  {
+   "fecha": "1991-12",
+   "valor": 16.0,
+   "anomalia": -25.4
+  },
+  {
+   "fecha": "1992-01",
+   "valor": 0.0,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "1992-02",
+   "valor": 0.7,
+   "anomalia": -0.2
+  },
+  {
+   "fecha": "1992-03",
+   "valor": 0.8,
+   "anomalia": -2.5
+  },
+  {
+   "fecha": "1992-04",
+   "valor": 25.9,
+   "anomalia": -10.1
+  },
+  {
+   "fecha": "1992-05",
+   "valor": 116.2,
+   "anomalia": -1.1
+  },
+  {
+   "fecha": "1992-06",
+   "valor": 110.0,
+   "anomalia": -2.3
+  },
+  {
+   "fecha": "1992-07",
+   "valor": 141.2,
+   "anomalia": 22.2
+  },
+  {
+   "fecha": "1992-08",
+   "valor": 72.5,
+   "anomalia": -49.0
+  },
+  {
+   "fecha": "1992-09",
+   "valor": 97.1,
+   "anomalia": -34.1
+  },
+  {
+   "fecha": "1992-10",
+   "valor": 177.4,
+   "anomalia": -48.3
+  },
+  {
+   "fecha": "1992-11",
+   "valor": 59.7,
+   "anomalia": -87.4
+  },
+  {
+   "fecha": "1992-12",
+   "valor": 18.1,
+   "anomalia": -23.3
+  },
+  {
+   "fecha": "1993-01",
+   "valor": 9.8,
+   "anomalia": 8.1
+  },
+  {
+   "fecha": "1993-02",
+   "valor": 2.7,
+   "anomalia": 1.8
+  },
+  {
+   "fecha": "1993-03",
+   "valor": 4.8,
+   "anomalia": 1.5
+  },
+  {
+   "fecha": "1993-04",
+   "valor": 24.8,
+   "anomalia": -11.3
+  },
+  {
+   "fecha": "1993-05",
+   "valor": 200.0,
+   "anomalia": 82.7
+  },
+  {
+   "fecha": "1993-06",
+   "valor": 79.9,
+   "anomalia": -32.3
+  },
+  {
+   "fecha": "1993-07",
+   "valor": 53.0,
+   "anomalia": -66.1
+  },
+  {
+   "fecha": "1993-08",
+   "valor": 63.7,
+   "anomalia": -57.8
+  },
+  {
+   "fecha": "1993-09",
+   "valor": 176.9,
+   "anomalia": 45.6
+  },
+  {
+   "fecha": "1993-10",
+   "valor": 131.5,
+   "anomalia": -94.2
+  },
+  {
+   "fecha": "1993-11",
+   "valor": 125.5,
+   "anomalia": -21.6
+  },
+  {
+   "fecha": "1993-12",
+   "valor": 16.5,
+   "anomalia": -24.9
+  },
+  {
+   "fecha": "1994-01",
+   "valor": 0.4,
+   "anomalia": -1.3
+  },
+  {
+   "fecha": "1994-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "1994-03",
+   "valor": 4.2,
+   "anomalia": 0.9
+  },
+  {
+   "fecha": "1994-04",
+   "valor": 31.0,
+   "anomalia": -5.0
+  },
+  {
+   "fecha": "1994-05",
+   "valor": 97.3,
+   "anomalia": -20.0
+  },
+  {
+   "fecha": "1994-06",
+   "valor": 62.5,
+   "anomalia": -49.8
+  },
+  {
+   "fecha": "1994-07",
+   "valor": 97.6,
+   "anomalia": -21.5
+  },
+  {
+   "fecha": "1994-08",
+   "valor": 100.9,
+   "anomalia": -20.6
+  },
+  {
+   "fecha": "1994-09",
+   "valor": 110.2,
+   "anomalia": -21.1
+  },
+  {
+   "fecha": "1994-10",
+   "valor": 169.3,
+   "anomalia": -56.4
+  },
+  {
+   "fecha": "1994-11",
+   "valor": 186.9,
+   "anomalia": 39.8
+  },
+  {
+   "fecha": "1994-12",
+   "valor": 6.0,
+   "anomalia": -35.3
+  },
+  {
+   "fecha": "1995-01",
+   "valor": 0.0,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "1995-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "1995-03",
+   "valor": 3.3,
+   "anomalia": 0.0
+  },
+  {
+   "fecha": "1995-04",
+   "valor": 55.7,
+   "anomalia": 19.7
+  },
+  {
+   "fecha": "1995-05",
+   "valor": 146.7,
+   "anomalia": 29.4
+  },
+  {
+   "fecha": "1995-06",
+   "valor": 123.1,
+   "anomalia": 10.8
+  },
+  {
+   "fecha": "1995-07",
+   "valor": 243.9,
+   "anomalia": 124.9
+  },
+  {
+   "fecha": "1995-08",
+   "valor": 220.1,
+   "anomalia": 98.7
+  },
+  {
+   "fecha": "1995-09",
+   "valor": 72.6,
+   "anomalia": -58.7
+  },
+  {
+   "fecha": "1995-10",
+   "valor": 201.7,
+   "anomalia": -24.0
+  },
+  {
+   "fecha": "1995-11",
+   "valor": 101.2,
+   "anomalia": -45.9
+  },
+  {
+   "fecha": "1995-12",
+   "valor": 46.0,
+   "anomalia": 4.7
+  },
+  {
+   "fecha": "1996-01",
+   "valor": 1.9,
+   "anomalia": 0.2
+  },
+  {
+   "fecha": "1996-02",
+   "valor": 3.8,
+   "anomalia": 2.8
+  },
+  {
+   "fecha": "1996-03",
+   "valor": 2.3,
+   "anomalia": -1.0
+  },
+  {
+   "fecha": "1996-04",
+   "valor": 27.5,
+   "anomalia": -8.5
+  },
+  {
+   "fecha": "1996-05",
+   "valor": 217.1,
+   "anomalia": 99.8
+  },
+  {
+   "fecha": "1996-06",
+   "valor": 141.9,
+   "anomalia": 29.6
+  },
+  {
+   "fecha": "1996-07",
+   "valor": 141.1,
+   "anomalia": 22.0
+  },
+  {
+   "fecha": "1996-08",
+   "valor": 109.3,
+   "anomalia": -12.2
+  },
+  {
+   "fecha": "1996-09",
+   "valor": 105.0,
+   "anomalia": -26.2
+  },
+  {
+   "fecha": "1996-10",
+   "valor": 222.8,
+   "anomalia": -2.9
+  },
+  {
+   "fecha": "1996-11",
+   "valor": 151.7,
+   "anomalia": 4.6
+  },
+  {
+   "fecha": "1996-12",
+   "valor": 15.8,
+   "anomalia": -25.6
+  },
+  {
+   "fecha": "1997-01",
+   "valor": 0.4,
+   "anomalia": -1.3
+  },
+  {
+   "fecha": "1997-02",
+   "valor": 0.4,
+   "anomalia": -0.5
+  },
+  {
+   "fecha": "1997-03",
+   "valor": 0.0,
+   "anomalia": -3.3
+  },
+  {
+   "fecha": "1997-04",
+   "valor": 29.0,
+   "anomalia": -7.0
+  },
+  {
+   "fecha": "1997-05",
+   "valor": 45.9,
+   "anomalia": -71.4
+  },
+  {
+   "fecha": "1997-06",
+   "valor": 161.1,
+   "anomalia": 48.8
+  },
+  {
+   "fecha": "1997-07",
+   "valor": 39.4,
+   "anomalia": -79.6
+  },
+  {
+   "fecha": "1997-08",
+   "valor": 44.5,
+   "anomalia": -76.9
+  },
+  {
+   "fecha": "1997-09",
+   "valor": 104.4,
+   "anomalia": -26.8
+  },
+  {
+   "fecha": "1997-10",
+   "valor": 117.0,
+   "anomalia": -108.7
+  },
+  {
+   "fecha": "1997-11",
+   "valor": 209.4,
+   "anomalia": 62.3
+  },
+  {
+   "fecha": "1997-12",
+   "valor": 7.7,
+   "anomalia": -33.7
+  },
+  {
+   "fecha": "1998-01",
+   "valor": 0.2,
+   "anomalia": -1.5
+  },
+  {
+   "fecha": "1998-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "1998-03",
+   "valor": 2.0,
+   "anomalia": -1.3
+  },
+  {
+   "fecha": "1998-04",
+   "valor": 40.6,
+   "anomalia": 4.6
+  },
+  {
+   "fecha": "1998-05",
+   "valor": 131.6,
+   "anomalia": 14.4
+  },
+  {
+   "fecha": "1998-06",
+   "valor": 100.2,
+   "anomalia": -12.1
+  },
+  {
+   "fecha": "1998-07",
+   "valor": 119.1,
+   "anomalia": 0.1
+  },
+  {
+   "fecha": "1998-08",
+   "valor": 139.6,
+   "anomalia": 18.2
+  },
+  {
+   "fecha": "1998-09",
+   "valor": 139.2,
+   "anomalia": 7.9
+  },
+  {
+   "fecha": "1998-10",
+   "valor": 182.5,
+   "anomalia": -43.2
+  },
+  {
+   "fecha": "1998-11",
+   "valor": 83.7,
+   "anomalia": -63.4
+  },
+  {
+   "fecha": "1998-12",
+   "valor": 58.0,
+   "anomalia": 16.6
+  },
+  {
+   "fecha": "1999-01",
+   "valor": 1.1,
+   "anomalia": -0.7
+  },
+  {
+   "fecha": "1999-02",
+   "valor": 5.5,
+   "anomalia": 4.6
+  },
+  {
+   "fecha": "1999-03",
+   "valor": 8.1,
+   "anomalia": 4.8
+  },
+  {
+   "fecha": "1999-04",
+   "valor": 37.5,
+   "anomalia": 1.5
+  },
+  {
+   "fecha": "1999-05",
+   "valor": 115.7,
+   "anomalia": -1.6
+  },
+  {
+   "fecha": "1999-06",
+   "valor": 121.0,
+   "anomalia": 8.7
+  },
+  {
+   "fecha": "1999-07",
+   "valor": 128.8,
+   "anomalia": 9.8
+  },
+  {
+   "fecha": "1999-08",
+   "valor": 243.0,
+   "anomalia": 121.6
+  },
+  {
+   "fecha": "1999-09",
+   "valor": 182.3,
+   "anomalia": 51.1
+  },
+  {
+   "fecha": "1999-10",
+   "valor": 280.8,
+   "anomalia": 55.1
+  },
+  {
+   "fecha": "1999-11",
+   "valor": 197.3,
+   "anomalia": 50.2
+  },
+  {
+   "fecha": "1999-12",
+   "valor": 119.9,
+   "anomalia": 78.5
+  },
+  {
+   "fecha": "2000-01",
+   "valor": 0.9,
+   "anomalia": -0.8
+  },
+  {
+   "fecha": "2000-02",
+   "valor": 0.3,
+   "anomalia": -0.7
+  },
+  {
+   "fecha": "2000-03",
+   "valor": 3.2,
+   "anomalia": -0.1
+  },
+  {
+   "fecha": "2000-04",
+   "valor": 38.7,
+   "anomalia": 2.7
+  },
+  {
+   "fecha": "2000-05",
+   "valor": 119.7,
+   "anomalia": 2.4
+  },
+  {
+   "fecha": "2000-06",
+   "valor": 110.9,
+   "anomalia": -1.4
+  },
+  {
+   "fecha": "2000-07",
+   "valor": 160.7,
+   "anomalia": 41.7
+  },
+  {
+   "fecha": "2000-08",
+   "valor": 117.9,
+   "anomalia": -3.5
+  },
+  {
+   "fecha": "2000-09",
+   "valor": 130.2,
+   "anomalia": -1.1
+  },
+  {
+   "fecha": "2000-10",
+   "valor": 157.9,
+   "anomalia": -67.8
+  },
+  {
+   "fecha": "2000-11",
+   "valor": 59.7,
+   "anomalia": -87.4
+  },
+  {
+   "fecha": "2000-12",
+   "valor": 55.6,
+   "anomalia": 14.3
+  },
+  {
+   "fecha": "2001-01",
+   "valor": 3.7,
+   "anomalia": 2.0
+  },
+  {
+   "fecha": "2001-02",
+   "valor": 0.1,
+   "anomalia": -0.8
+  },
+  {
+   "fecha": "2001-03",
+   "valor": 1.5,
+   "anomalia": -1.8
+  },
+  {
+   "fecha": "2001-04",
+   "valor": 14.4,
+   "anomalia": -21.6
+  },
+  {
+   "fecha": "2001-05",
+   "valor": 54.2,
+   "anomalia": -63.1
+  },
+  {
+   "fecha": "2001-06",
+   "valor": 67.5,
+   "anomalia": -44.8
+  },
+  {
+   "fecha": "2001-07",
+   "valor": 75.1,
+   "anomalia": -44.0
+  },
+  {
+   "fecha": "2001-08",
+   "valor": 58.1,
+   "anomalia": -63.4
+  },
+  {
+   "fecha": "2001-09",
+   "valor": 103.8,
+   "anomalia": -27.4
+  },
+  {
+   "fecha": "2001-10",
+   "valor": 220.5,
+   "anomalia": -5.2
+  },
+  {
+   "fecha": "2001-11",
+   "valor": 134.0,
+   "anomalia": -13.1
+  },
+  {
+   "fecha": "2001-12",
+   "valor": 84.2,
+   "anomalia": 42.8
+  },
+  {
+   "fecha": "2002-01",
+   "valor": 0.5,
+   "anomalia": -1.3
+  },
+  {
+   "fecha": "2002-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2002-03",
+   "valor": 2.1,
+   "anomalia": -1.2
+  },
+  {
+   "fecha": "2002-04",
+   "valor": 29.2,
+   "anomalia": -6.8
+  },
+  {
+   "fecha": "2002-05",
+   "valor": 90.7,
+   "anomalia": -26.5
+  },
+  {
+   "fecha": "2002-06",
+   "valor": 92.5,
+   "anomalia": -19.8
+  },
+  {
+   "fecha": "2002-07",
+   "valor": 128.7,
+   "anomalia": 9.7
+  },
+  {
+   "fecha": "2002-08",
+   "valor": 74.5,
+   "anomalia": -46.9
+  },
+  {
+   "fecha": "2002-09",
+   "valor": 116.6,
+   "anomalia": -14.7
+  },
+  {
+   "fecha": "2002-10",
+   "valor": 120.2,
+   "anomalia": -105.5
+  },
+  {
+   "fecha": "2002-11",
+   "valor": 72.0,
+   "anomalia": -75.1
+  },
+  {
+   "fecha": "2002-12",
+   "valor": 9.7,
+   "anomalia": -31.7
+  },
+  {
+   "fecha": "2003-01",
+   "valor": 0.0,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "2003-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2003-03",
+   "valor": 2.5,
+   "anomalia": -0.7
+  },
+  {
+   "fecha": "2003-04",
+   "valor": 70.0,
+   "anomalia": 34.0
+  },
+  {
+   "fecha": "2003-05",
+   "valor": 58.0,
+   "anomalia": -59.2
+  },
+  {
+   "fecha": "2003-06",
+   "valor": 247.1,
+   "anomalia": 134.8
+  },
+  {
+   "fecha": "2003-07",
+   "valor": 151.1,
+   "anomalia": 32.1
+  },
+  {
+   "fecha": "2003-08",
+   "valor": 81.4,
+   "anomalia": -40.1
+  },
+  {
+   "fecha": "2003-09",
+   "valor": 124.4,
+   "anomalia": -6.9
+  },
+  {
+   "fecha": "2003-10",
+   "valor": 237.2,
+   "anomalia": 11.5
+  },
+  {
+   "fecha": "2003-11",
+   "valor": 135.7,
+   "anomalia": -11.4
+  },
+  {
+   "fecha": "2003-12",
+   "valor": 130.5,
+   "anomalia": 89.1
+  },
+  {
+   "fecha": "2004-01",
+   "valor": 1.6,
+   "anomalia": -0.1
+  },
+  {
+   "fecha": "2004-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2004-03",
+   "valor": 0.0,
+   "anomalia": -3.3
+  },
+  {
+   "fecha": "2004-04",
+   "valor": 36.6,
+   "anomalia": 0.6
+  },
+  {
+   "fecha": "2004-05",
+   "valor": 186.2,
+   "anomalia": 68.9
+  },
+  {
+   "fecha": "2004-06",
+   "valor": 77.7,
+   "anomalia": -34.5
+  },
+  {
+   "fecha": "2004-07",
+   "valor": 136.9,
+   "anomalia": 17.9
+  },
+  {
+   "fecha": "2004-08",
+   "valor": 137.0,
+   "anomalia": 15.5
+  },
+  {
+   "fecha": "2004-09",
+   "valor": 179.3,
+   "anomalia": 48.1
+  },
+  {
+   "fecha": "2004-10",
+   "valor": 242.3,
+   "anomalia": 16.6
+  },
+  {
+   "fecha": "2004-11",
+   "valor": 263.6,
+   "anomalia": 116.5
+  },
+  {
+   "fecha": "2004-12",
+   "valor": 10.6,
+   "anomalia": -30.8
+  },
+  {
+   "fecha": "2005-01",
+   "valor": 2.1,
+   "anomalia": 0.4
+  },
+  {
+   "fecha": "2005-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2005-03",
+   "valor": 5.0,
+   "anomalia": 1.7
+  },
+  {
+   "fecha": "2005-04",
+   "valor": 24.6,
+   "anomalia": -11.5
+  },
+  {
+   "fecha": "2005-05",
+   "valor": 183.9,
+   "anomalia": 66.7
+  },
+  {
+   "fecha": "2005-06",
+   "valor": 159.2,
+   "anomalia": 46.9
+  },
+  {
+   "fecha": "2005-07",
+   "valor": 92.9,
+   "anomalia": -26.2
+  },
+  {
+   "fecha": "2005-08",
+   "valor": 104.4,
+   "anomalia": -17.0
+  },
+  {
+   "fecha": "2005-09",
+   "valor": 165.6,
+   "anomalia": 34.3
+  },
+  {
+   "fecha": "2005-10",
+   "valor": 234.0,
+   "anomalia": 8.3
+  },
+  {
+   "fecha": "2005-11",
+   "valor": 187.1,
+   "anomalia": 40.0
+  },
+  {
+   "fecha": "2005-12",
+   "valor": 10.1,
+   "anomalia": -31.3
+  },
+  {
+   "fecha": "2006-01",
+   "valor": 6.4,
+   "anomalia": 4.7
+  },
+  {
+   "fecha": "2006-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2006-03",
+   "valor": 9.7,
+   "anomalia": 6.4
+  },
+  {
+   "fecha": "2006-04",
+   "valor": 46.4,
+   "anomalia": 10.4
+  },
+  {
+   "fecha": "2006-05",
+   "valor": 164.0,
+   "anomalia": 46.7
+  },
+  {
+   "fecha": "2006-06",
+   "valor": 140.3,
+   "anomalia": 28.0
+  },
+  {
+   "fecha": "2006-07",
+   "valor": 116.2,
+   "anomalia": -2.8
+  },
+  {
+   "fecha": "2006-08",
+   "valor": 133.2,
+   "anomalia": 11.8
+  },
+  {
+   "fecha": "2006-09",
+   "valor": 94.2,
+   "anomalia": -37.1
+  },
+  {
+   "fecha": "2006-10",
+   "valor": 207.2,
+   "anomalia": -18.5
+  },
+  {
+   "fecha": "2006-11",
+   "valor": 176.8,
+   "anomalia": 29.7
+  },
+  {
+   "fecha": "2006-12",
+   "valor": 45.4,
+   "anomalia": 4.0
+  },
+  {
+   "fecha": "2007-01",
+   "valor": 0.0,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "2007-02",
+   "valor": 1.5,
+   "anomalia": 0.6
+  },
+  {
+   "fecha": "2007-03",
+   "valor": 1.7,
+   "anomalia": -1.6
+  },
+  {
+   "fecha": "2007-04",
+   "valor": 86.0,
+   "anomalia": 50.0
+  },
+  {
+   "fecha": "2007-05",
+   "valor": 192.8,
+   "anomalia": 75.5
+  },
+  {
+   "fecha": "2007-06",
+   "valor": 84.0,
+   "anomalia": -28.3
+  },
+  {
+   "fecha": "2007-07",
+   "valor": 114.5,
+   "anomalia": -4.5
+  },
+  {
+   "fecha": "2007-08",
+   "valor": 234.1,
+   "anomalia": 112.6
+  },
+  {
+   "fecha": "2007-09",
+   "valor": 163.1,
+   "anomalia": 31.8
+  },
+  {
+   "fecha": "2007-10",
+   "valor": 396.6,
+   "anomalia": 170.9
+  },
+  {
+   "fecha": "2007-11",
+   "valor": 124.3,
+   "anomalia": -22.7
+  },
+  {
+   "fecha": "2007-12",
+   "valor": 15.1,
+   "anomalia": -26.3
+  },
+  {
+   "fecha": "2008-01",
+   "valor": 0.0,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "2008-02",
+   "valor": 2.6,
+   "anomalia": 1.6
+  },
+  {
+   "fecha": "2008-03",
+   "valor": 4.4,
+   "anomalia": 1.2
+  },
+  {
+   "fecha": "2008-04",
+   "valor": 28.0,
+   "anomalia": -8.0
+  },
+  {
+   "fecha": "2008-05",
+   "valor": 105.4,
+   "anomalia": -11.9
+  },
+  {
+   "fecha": "2008-06",
+   "valor": 101.9,
+   "anomalia": -10.4
+  },
+  {
+   "fecha": "2008-07",
+   "valor": 131.4,
+   "anomalia": 12.3
+  },
+  {
+   "fecha": "2008-08",
+   "valor": 201.2,
+   "anomalia": 79.8
+  },
+  {
+   "fecha": "2008-09",
+   "valor": 176.4,
+   "anomalia": 45.2
+  },
+  {
+   "fecha": "2008-10",
+   "valor": 178.3,
+   "anomalia": -47.4
+  },
+  {
+   "fecha": "2008-11",
+   "valor": 234.3,
+   "anomalia": 87.2
+  },
+  {
+   "fecha": "2008-12",
+   "valor": 7.2,
+   "anomalia": -34.2
+  },
+  {
+   "fecha": "2009-01",
+   "valor": 0.9,
+   "anomalia": -0.8
+  },
+  {
+   "fecha": "2009-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2009-03",
+   "valor": 0.9,
+   "anomalia": -2.3
+  },
+  {
+   "fecha": "2009-04",
+   "valor": 22.1,
+   "anomalia": -13.9
+  },
+  {
+   "fecha": "2009-05",
+   "valor": 82.3,
+   "anomalia": -35.0
+  },
+  {
+   "fecha": "2009-06",
+   "valor": 120.6,
+   "anomalia": 8.4
+  },
+  {
+   "fecha": "2009-07",
+   "valor": 66.7,
+   "anomalia": -52.4
+  },
+  {
+   "fecha": "2009-08",
+   "valor": 92.6,
+   "anomalia": -28.8
+  },
+  {
+   "fecha": "2009-09",
+   "valor": 65.8,
+   "anomalia": -65.5
+  },
+  {
+   "fecha": "2009-10",
+   "valor": 146.3,
+   "anomalia": -79.4
+  },
+  {
+   "fecha": "2009-11",
+   "valor": 102.6,
+   "anomalia": -44.5
+  },
+  {
+   "fecha": "2009-12",
+   "valor": 33.6,
+   "anomalia": -7.8
+  },
+  {
+   "fecha": "2010-01",
+   "valor": 0.8,
+   "anomalia": -1.0
+  },
+  {
+   "fecha": "2010-02",
+   "valor": 3.2,
+   "anomalia": 2.2
+  },
+  {
+   "fecha": "2010-03",
+   "valor": 10.6,
+   "anomalia": 7.4
+  },
+  {
+   "fecha": "2010-04",
+   "valor": 53.9,
+   "anomalia": 17.9
+  },
+  {
+   "fecha": "2010-05",
+   "valor": 123.6,
+   "anomalia": 6.3
+  },
+  {
+   "fecha": "2010-06",
+   "valor": 193.0,
+   "anomalia": 80.7
+  },
+  {
+   "fecha": "2010-07",
+   "valor": 243.8,
+   "anomalia": 124.7
+  },
+  {
+   "fecha": "2010-08",
+   "valor": 230.8,
+   "anomalia": 109.3
+  },
+  {
+   "fecha": "2010-09",
+   "valor": 175.5,
+   "anomalia": 44.2
+  },
+  {
+   "fecha": "2010-10",
+   "valor": 377.3,
+   "anomalia": 151.6
+  },
+  {
+   "fecha": "2010-11",
+   "valor": 434.4,
+   "anomalia": 287.3
+  },
+  {
+   "fecha": "2010-12",
+   "valor": 184.8,
+   "anomalia": 143.5
+  },
+  {
+   "fecha": "2011-01",
+   "valor": 1.8,
+   "anomalia": 0.1
+  },
+  {
+   "fecha": "2011-02",
+   "valor": 3.8,
+   "anomalia": 2.8
+  },
+  {
+   "fecha": "2011-03",
+   "valor": 4.5,
+   "anomalia": 1.2
+  },
+  {
+   "fecha": "2011-04",
+   "valor": 60.1,
+   "anomalia": 24.1
+  },
+  {
+   "fecha": "2011-05",
+   "valor": 97.1,
+   "anomalia": -20.2
+  },
+  {
+   "fecha": "2011-06",
+   "valor": 191.2,
+   "anomalia": 78.9
+  },
+  {
+   "fecha": "2011-07",
+   "valor": 219.2,
+   "anomalia": 100.1
+  },
+  {
+   "fecha": "2011-08",
+   "valor": 146.0,
+   "anomalia": 24.6
+  },
+  {
+   "fecha": "2011-09",
+   "valor": 220.3,
+   "anomalia": 89.1
+  },
+  {
+   "fecha": "2011-10",
+   "valor": 460.8,
+   "anomalia": 235.1
+  },
+  {
+   "fecha": "2011-11",
+   "valor": 247.4,
+   "anomalia": 100.3
+  },
+  {
+   "fecha": "2011-12",
+   "valor": 121.8,
+   "anomalia": 80.5
+  },
+  {
+   "fecha": "2012-01",
+   "valor": 0.5,
+   "anomalia": -1.3
+  },
+  {
+   "fecha": "2012-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2012-03",
+   "valor": 2.2,
+   "anomalia": -1.0
+  },
+  {
+   "fecha": "2012-04",
+   "valor": 54.7,
+   "anomalia": 18.6
+  },
+  {
+   "fecha": "2012-05",
+   "valor": 138.2,
+   "anomalia": 20.9
+  },
+  {
+   "fecha": "2012-06",
+   "valor": 70.5,
+   "anomalia": -41.8
+  },
+  {
+   "fecha": "2012-07",
+   "valor": 87.1,
+   "anomalia": -32.0
+  },
+  {
+   "fecha": "2012-08",
+   "valor": 203.9,
+   "anomalia": 82.5
+  },
+  {
+   "fecha": "2012-09",
+   "valor": 163.8,
+   "anomalia": 32.5
+  },
+  {
+   "fecha": "2012-10",
+   "valor": 272.8,
+   "anomalia": 47.1
+  },
+  {
+   "fecha": "2012-11",
+   "valor": 93.8,
+   "anomalia": -53.3
+  },
+  {
+   "fecha": "2012-12",
+   "valor": 29.4,
+   "anomalia": -12.0
+  },
+  {
+   "fecha": "2013-01",
+   "valor": 0.0,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "2013-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2013-03",
+   "valor": 6.7,
+   "anomalia": 3.4
+  },
+  {
+   "fecha": "2013-04",
+   "valor": 21.3,
+   "anomalia": -14.7
+  },
+  {
+   "fecha": "2013-05",
+   "valor": 137.7,
+   "anomalia": 20.4
+  },
+  {
+   "fecha": "2013-06",
+   "valor": 121.3,
+   "anomalia": 9.0
+  },
+  {
+   "fecha": "2013-07",
+   "valor": 94.4,
+   "anomalia": -24.7
+  },
+  {
+   "fecha": "2013-08",
+   "valor": 185.1,
+   "anomalia": 63.7
+  },
+  {
+   "fecha": "2013-09",
+   "valor": 221.9,
+   "anomalia": 90.6
+  },
+  {
+   "fecha": "2013-10",
+   "valor": 252.1,
+   "anomalia": 26.4
+  },
+  {
+   "fecha": "2013-11",
+   "valor": 51.7,
+   "anomalia": -95.4
+  },
+  {
+   "fecha": "2013-12",
+   "valor": 21.2,
+   "anomalia": -20.2
+  },
+  {
+   "fecha": "2014-01",
+   "valor": 3.7,
+   "anomalia": 1.9
+  },
+  {
+   "fecha": "2014-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2014-03",
+   "valor": 1.6,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "2014-04",
+   "valor": 31.1,
+   "anomalia": -4.9
+  },
+  {
+   "fecha": "2014-05",
+   "valor": 41.6,
+   "anomalia": -75.7
+  },
+  {
+   "fecha": "2014-06",
+   "valor": 41.4,
+   "anomalia": -70.8
+  },
+  {
+   "fecha": "2014-07",
+   "valor": 47.7,
+   "anomalia": -71.3
+  },
+  {
+   "fecha": "2014-08",
+   "valor": 92.1,
+   "anomalia": -29.3
+  },
+  {
+   "fecha": "2014-09",
+   "valor": 134.9,
+   "anomalia": 3.6
+  },
+  {
+   "fecha": "2014-10",
+   "valor": 249.6,
+   "anomalia": 23.9
+  },
+  {
+   "fecha": "2014-11",
+   "valor": 91.8,
+   "anomalia": -55.3
+  },
+  {
+   "fecha": "2014-12",
+   "valor": 56.1,
+   "anomalia": 14.7
+  },
+  {
+   "fecha": "2015-01",
+   "valor": 1.7,
+   "anomalia": -0.0
+  },
+  {
+   "fecha": "2015-02",
+   "valor": 2.3,
+   "anomalia": 1.4
+  },
+  {
+   "fecha": "2015-03",
+   "valor": 3.7,
+   "anomalia": 0.4
+  },
+  {
+   "fecha": "2015-04",
+   "valor": 13.5,
+   "anomalia": -22.5
+  },
+  {
+   "fecha": "2015-05",
+   "valor": 27.9,
+   "anomalia": -89.4
+  },
+  {
+   "fecha": "2015-06",
+   "valor": 36.5,
+   "anomalia": -75.7
+  },
+  {
+   "fecha": "2015-07",
+   "valor": 40.3,
+   "anomalia": -78.8
+  },
+  {
+   "fecha": "2015-08",
+   "valor": 60.2,
+   "anomalia": -61.2
+  },
+  {
+   "fecha": "2015-09",
+   "valor": 79.4,
+   "anomalia": -51.9
+  },
+  {
+   "fecha": "2015-10",
+   "valor": 90.2,
+   "anomalia": -135.5
+  },
+  {
+   "fecha": "2015-11",
+   "valor": 115.5,
+   "anomalia": -31.6
+  },
+  {
+   "fecha": "2015-12",
+   "valor": 9.3,
+   "anomalia": -32.1
+  },
+  {
+   "fecha": "2016-01",
+   "valor": 0.3,
+   "anomalia": -1.5
+  },
+  {
+   "fecha": "2016-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2016-03",
+   "valor": 0.0,
+   "anomalia": -3.3
+  },
+  {
+   "fecha": "2016-04",
+   "valor": 18.8,
+   "anomalia": -17.2
+  },
+  {
+   "fecha": "2016-05",
+   "valor": 103.7,
+   "anomalia": -13.6
+  },
+  {
+   "fecha": "2016-06",
+   "valor": 93.4,
+   "anomalia": -18.8
+  },
+  {
+   "fecha": "2016-07",
+   "valor": 122.5,
+   "anomalia": 3.4
+  },
+  {
+   "fecha": "2016-08",
+   "valor": 69.9,
+   "anomalia": -51.5
+  },
+  {
+   "fecha": "2016-09",
+   "valor": 82.9,
+   "anomalia": -48.3
+  },
+  {
+   "fecha": "2016-10",
+   "valor": 393.2,
+   "anomalia": 167.5
+  },
+  {
+   "fecha": "2016-11",
+   "valor": 225.6,
+   "anomalia": 78.5
+  },
+  {
+   "fecha": "2016-12",
+   "valor": 27.0,
+   "anomalia": -14.4
+  },
+  {
+   "fecha": "2017-01",
+   "valor": 1.8,
+   "anomalia": 0.1
+  },
+  {
+   "fecha": "2017-02",
+   "valor": 0.5,
+   "anomalia": -0.4
+  },
+  {
+   "fecha": "2017-03",
+   "valor": 8.8,
+   "anomalia": 5.5
+  },
+  {
+   "fecha": "2017-04",
+   "valor": 35.4,
+   "anomalia": -0.7
+  },
+  {
+   "fecha": "2017-05",
+   "valor": 130.6,
+   "anomalia": 13.3
+  },
+  {
+   "fecha": "2017-06",
+   "valor": 124.5,
+   "anomalia": 12.3
+  },
+  {
+   "fecha": "2017-07",
+   "valor": 138.9,
+   "anomalia": 19.8
+  },
+  {
+   "fecha": "2017-08",
+   "valor": 108.1,
+   "anomalia": -13.4
+  },
+  {
+   "fecha": "2017-09",
+   "valor": 106.2,
+   "anomalia": -25.1
+  },
+  {
+   "fecha": "2017-10",
+   "valor": 145.1,
+   "anomalia": -80.6
+  },
+  {
+   "fecha": "2017-11",
+   "valor": 147.8,
+   "anomalia": 0.7
+  },
+  {
+   "fecha": "2017-12",
+   "valor": 34.5,
+   "anomalia": -6.8
+  },
+  {
+   "fecha": "2018-01",
+   "valor": 10.7,
+   "anomalia": 9.0
+  },
+  {
+   "fecha": "2018-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2018-03",
+   "valor": 1.2,
+   "anomalia": -2.1
+  },
+  {
+   "fecha": "2018-04",
+   "valor": 57.2,
+   "anomalia": 21.2
+  },
+  {
+   "fecha": "2018-05",
+   "valor": 124.0,
+   "anomalia": 6.7
+  },
+  {
+   "fecha": "2018-06",
+   "valor": 116.6,
+   "anomalia": 4.3
+  },
+  {
+   "fecha": "2018-07",
+   "valor": 72.1,
+   "anomalia": -46.9
+  },
+  {
+   "fecha": "2018-08",
+   "valor": 68.6,
+   "anomalia": -52.8
+  },
+  {
+   "fecha": "2018-09",
+   "valor": 113.3,
+   "anomalia": -17.9
+  },
+  {
+   "fecha": "2018-10",
+   "valor": 227.4,
+   "anomalia": 1.7
+  },
+  {
+   "fecha": "2018-11",
+   "valor": 93.8,
+   "anomalia": -53.3
+  },
+  {
+   "fecha": "2018-12",
+   "valor": 5.8,
+   "anomalia": -35.6
+  },
+  {
+   "fecha": "2019-01",
+   "valor": 0.3,
+   "anomalia": -1.4
+  },
+  {
+   "fecha": "2019-02",
+   "valor": 0.6,
+   "anomalia": -0.3
+  },
+  {
+   "fecha": "2019-03",
+   "valor": 0.6,
+   "anomalia": -2.7
+  },
+  {
+   "fecha": "2019-04",
+   "valor": 15.1,
+   "anomalia": -20.9
+  },
+  {
+   "fecha": "2019-05",
+   "valor": 122.1,
+   "anomalia": 4.8
+  },
+  {
+   "fecha": "2019-06",
+   "valor": 82.2,
+   "anomalia": -30.1
+  },
+  {
+   "fecha": "2019-07",
+   "valor": 88.7,
+   "anomalia": -30.4
+  },
+  {
+   "fecha": "2019-08",
+   "valor": 89.4,
+   "anomalia": -32.0
+  },
+  {
+   "fecha": "2019-09",
+   "valor": 109.1,
+   "anomalia": -22.1
+  },
+  {
+   "fecha": "2019-10",
+   "valor": 308.6,
+   "anomalia": 82.9
+  },
+  {
+   "fecha": "2019-11",
+   "valor": 55.2,
+   "anomalia": -91.9
+  },
+  {
+   "fecha": "2019-12",
+   "valor": 13.7,
+   "anomalia": -27.7
+  },
+  {
+   "fecha": "2020-01",
+   "valor": 0.3,
+   "anomalia": -1.4
+  },
+  {
+   "fecha": "2020-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2020-03",
+   "valor": 0.7,
+   "anomalia": -2.6
+  },
+  {
+   "fecha": "2020-04",
+   "valor": 21.8,
+   "anomalia": -14.2
+  },
+  {
+   "fecha": "2020-05",
+   "valor": 49.5,
+   "anomalia": -67.8
+  },
+  {
+   "fecha": "2020-06",
+   "valor": 109.8,
+   "anomalia": -2.5
+  },
+  {
+   "fecha": "2020-07",
+   "valor": 228.3,
+   "anomalia": 109.2
+  },
+  {
+   "fecha": "2020-08",
+   "valor": 118.7,
+   "anomalia": -2.7
+  },
+  {
+   "fecha": "2020-09",
+   "valor": 102.7,
+   "anomalia": -28.6
+  },
+  {
+   "fecha": "2020-10",
+   "valor": 237.9,
+   "anomalia": 12.2
+  },
+  {
+   "fecha": "2020-11",
+   "valor": 177.7,
+   "anomalia": 30.6
+  },
+  {
+   "fecha": "2020-12",
+   "valor": 31.7,
+   "anomalia": -9.7
+  },
+  {
+   "fecha": "2021-01",
+   "valor": 6.3,
+   "anomalia": 4.6
+  },
+  {
+   "fecha": "2021-02",
+   "valor": 0.3,
+   "anomalia": -0.7
+  },
+  {
+   "fecha": "2021-03",
+   "valor": 2.7,
+   "anomalia": -0.6
+  },
+  {
+   "fecha": "2021-04",
+   "valor": 76.4,
+   "anomalia": 40.3
+  },
+  {
+   "fecha": "2021-05",
+   "valor": 84.1,
+   "anomalia": -33.2
+  },
+  {
+   "fecha": "2021-06",
+   "valor": 99.3,
+   "anomalia": -12.9
+  },
+  {
+   "fecha": "2021-07",
+   "valor": 88.1,
+   "anomalia": -30.9
+  },
+  {
+   "fecha": "2021-08",
+   "valor": 89.7,
+   "anomalia": -31.7
+  },
+  {
+   "fecha": "2021-09",
+   "valor": 123.4,
+   "anomalia": -7.8
+  },
+  {
+   "fecha": "2021-10",
+   "valor": 252.6,
+   "anomalia": 26.9
+  },
+  {
+   "fecha": "2021-11",
+   "valor": 85.7,
+   "anomalia": -61.4
+  },
+  {
+   "fecha": "2021-12",
+   "valor": 34.1,
+   "anomalia": -7.3
+  },
+  {
+   "fecha": "2022-01",
+   "valor": 0.4,
+   "anomalia": -1.3
+  },
+  {
+   "fecha": "2022-02",
+   "valor": 2.0,
+   "anomalia": 1.0
+  },
+  {
+   "fecha": "2022-03",
+   "valor": 8.7,
+   "anomalia": 5.4
+  },
+  {
+   "fecha": "2022-04",
+   "valor": 91.7,
+   "anomalia": 55.7
+  },
+  {
+   "fecha": "2022-05",
+   "valor": 95.0,
+   "anomalia": -22.3
+  },
+  {
+   "fecha": "2022-06",
+   "valor": 206.2,
+   "anomalia": 94.0
+  },
+  {
+   "fecha": "2022-07",
+   "valor": 162.2,
+   "anomalia": 43.1
+  },
+  {
+   "fecha": "2022-08",
+   "valor": 158.0,
+   "anomalia": 36.5
+  },
+  {
+   "fecha": "2022-09",
+   "valor": 183.7,
+   "anomalia": 52.5
+  },
+  {
+   "fecha": "2022-10",
+   "valor": 289.8,
+   "anomalia": 64.1
+  },
+  {
+   "fecha": "2022-11",
+   "valor": 229.8,
+   "anomalia": 82.7
+  },
+  {
+   "fecha": "2022-12",
+   "valor": 11.6,
+   "anomalia": -29.8
+  },
+  {
+   "fecha": "2023-01",
+   "valor": 7.6,
+   "anomalia": 5.9
+  },
+  {
+   "fecha": "2023-02",
+   "valor": 0.0,
+   "anomalia": -0.9
+  },
+  {
+   "fecha": "2023-03",
+   "valor": 9.3,
+   "anomalia": 6.0
+  },
+  {
+   "fecha": "2023-04",
+   "valor": 46.1,
+   "anomalia": 10.1
+  },
+  {
+   "fecha": "2023-05",
+   "valor": 84.4,
+   "anomalia": -32.8
+  },
+  {
+   "fecha": "2023-06",
+   "valor": 125.7,
+   "anomalia": 13.4
+  },
+  {
+   "fecha": "2023-07",
+   "valor": 145.4,
+   "anomalia": 26.4
+  },
+  {
+   "fecha": "2023-08",
+   "valor": 103.3,
+   "anomalia": -18.2
+  },
+  {
+   "fecha": "2023-09",
+   "valor": 100.8,
+   "anomalia": -30.5
+  },
+  {
+   "fecha": "2023-10",
+   "valor": 288.3,
+   "anomalia": 62.6
+  },
+  {
+   "fecha": "2023-11",
+   "valor": 114.6,
+   "anomalia": -32.5
+  },
+  {
+   "fecha": "2023-12",
+   "valor": 9.3,
+   "anomalia": -32.1
+  },
+  {
+   "fecha": "2024-01",
+   "valor": 0.0,
+   "anomalia": -1.7
+  },
+  {
+   "fecha": "2024-02",
+   "valor": 1.1,
+   "anomalia": 0.2
+  },
+  {
+   "fecha": "2024-03",
+   "valor": 0.0,
+   "anomalia": -3.3
+  },
+  {
+   "fecha": "2024-04",
+   "valor": 39.5,
+   "anomalia": 3.5
+  },
+  {
+   "fecha": "2024-05",
+   "valor": 134.0,
+   "anomalia": 16.7
+  },
+  {
+   "fecha": "2024-06",
+   "valor": 177.9,
+   "anomalia": 65.6
+  },
+  {
+   "fecha": "2024-07",
+   "valor": 135.9,
+   "anomalia": 16.9
+  },
+  {
+   "fecha": "2024-08",
+   "valor": 115.0,
+   "anomalia": -6.5
+  },
+  {
+   "fecha": "2024-09",
+   "valor": 120.1,
+   "anomalia": -11.2
+  },
+  {
+   "fecha": "2024-10",
+   "valor": 183.3,
+   "anomalia": -42.4
+  },
+  {
+   "fecha": "2024-11",
+   "valor": 284.0,
+   "anomalia": 137.0
+  },
+  {
+   "fecha": "2024-12",
+   "valor": 85.9,
+   "anomalia": 44.6
+  },
+  {
+   "fecha": "2025-01",
+   "valor": 24.8,
+   "anomalia": 23.1
+  },
+  {
+   "fecha": "2025-02",
+   "valor": 3.8,
+   "anomalia": 2.8
+  },
+  {
+   "fecha": "2025-03",
+   "valor": 3.7,
+   "anomalia": 0.4
+  },
+  {
+   "fecha": "2025-04",
+   "valor": 33.2,
+   "anomalia": -2.8
+  },
+  {
+   "fecha": "2025-05",
+   "valor": 126.7,
+   "anomalia": 9.4
+  },
+  {
+   "fecha": "2025-06",
+   "valor": 175.0,
+   "anomalia": 62.7
+  },
+  {
+   "fecha": "2025-07",
+   "valor": 97.2,
+   "anomalia": -21.9
+  },
+  {
+   "fecha": "2025-08",
+   "valor": 159.3,
+   "anomalia": 37.9
+  },
+  {
+   "fecha": "2025-09",
+   "valor": 195.5,
+   "anomalia": 64.2
+  },
+  {
+   "fecha": "2025-10",
+   "valor": 268.0,
+   "anomalia": 42.3
+  },
+  {
+   "fecha": "2025-11",
+   "valor": 116.5,
+   "anomalia": -30.6
+  },
+  {
+   "fecha": "2025-12",
+   "valor": 30.5,
+   "anomalia": -10.9
+  },
+  {
+   "fecha": "2026-01",
+   "valor": 10.3,
+   "anomalia": 8.6
+  },
+  {
+   "fecha": "2026-02",
+   "valor": 15.9,
+   "anomalia": 15.0
+  },
+  {
+   "fecha": "2026-03",
+   "valor": 2.1,
+   "anomalia": -1.2
+  },
+  {
+   "fecha": "2026-04",
+   "valor": 32.8,
+   "anomalia": -3.2
+  },
+  {
+   "fecha": "2026-05",
+   "valor": 47.7,
+   "anomalia": -69.6
+  },
+  {
+   "fecha": "2026-06",
+   "valor": 130.6,
+   "anomalia": 18.3
+  },
+  {
+   "fecha": "2026-07",
+   "valor": 46.4,
+   "anomalia": -72.6
+  }
+ ],
+ "sst": [
+  {
+   "fecha": "1991-01",
+   "valor": 27.27,
+   "anomalia": -0.22
+  },
+  {
+   "fecha": "1991-02",
+   "valor": 26.83,
+   "anomalia": -0.25
+  },
+  {
+   "fecha": "1991-03",
+   "valor": 26.99,
+   "anomalia": 0.07
+  },
+  {
+   "fecha": "1991-04",
+   "valor": 27.34,
+   "anomalia": -0.08
+  },
+  {
+   "fecha": "1991-05",
+   "valor": 27.99,
+   "anomalia": -0.59
+  },
+  {
+   "fecha": "1991-06",
+   "valor": 28.44,
+   "anomalia": -0.96
+  },
+  {
+   "fecha": "1991-07",
+   "valor": 28.61,
+   "anomalia": -0.73
+  },
+  {
+   "fecha": "1991-08",
+   "valor": 28.79,
+   "anomalia": -0.55
+  },
+  {
+   "fecha": "1991-09",
+   "valor": 28.61,
+   "anomalia": -0.81
+  },
+  {
+   "fecha": "1991-10",
+   "valor": 28.97,
+   "anomalia": -0.35
+  },
+  {
+   "fecha": "1991-11",
+   "valor": 28.45,
+   "anomalia": -0.54
+  },
+  {
+   "fecha": "1991-12",
+   "valor": 27.24,
+   "anomalia": -1.15
+  },
+  {
+   "fecha": "1992-01",
+   "valor": 26.28,
+   "anomalia": -1.2
+  },
+  {
+   "fecha": "1992-02",
+   "valor": 26.37,
+   "anomalia": -0.72
+  },
+  {
+   "fecha": "1992-03",
+   "valor": 25.89,
+   "anomalia": -1.04
+  },
+  {
+   "fecha": "1992-04",
+   "valor": 27.07,
+   "anomalia": -0.35
+  },
+  {
+   "fecha": "1992-05",
+   "valor": 27.55,
+   "anomalia": -1.03
+  },
+  {
+   "fecha": "1992-06",
+   "valor": 29.4,
+   "anomalia": 0.0
+  },
+  {
+   "fecha": "1992-07",
+   "valor": 29.0,
+   "anomalia": -0.33
+  },
+  {
+   "fecha": "1992-08",
+   "valor": 28.71,
+   "anomalia": -0.64
+  },
+  {
+   "fecha": "1992-09",
+   "valor": 28.76,
+   "anomalia": -0.66
+  },
+  {
+   "fecha": "1992-10",
+   "valor": 28.59,
+   "anomalia": -0.73
+  },
+  {
+   "fecha": "1992-11",
+   "valor": 28.03,
+   "anomalia": -0.96
+  },
+  {
+   "fecha": "1992-12",
+   "valor": 27.78,
+   "anomalia": -0.62
+  },
+  {
+   "fecha": "1993-01",
+   "valor": 27.41,
+   "anomalia": -0.07
+  },
+  {
+   "fecha": "1993-02",
+   "valor": 26.87,
+   "anomalia": -0.21
+  },
+  {
+   "fecha": "1993-03",
+   "valor": 27.22,
+   "anomalia": 0.29
+  },
+  {
+   "fecha": "1993-04",
+   "valor": 27.42,
+   "anomalia": -0.0
+  },
+  {
+   "fecha": "1993-05",
+   "valor": 28.79,
+   "anomalia": 0.21
+  },
+  {
+   "fecha": "1993-06",
+   "valor": 29.37,
+   "anomalia": -0.02
+  },
+  {
+   "fecha": "1993-07",
+   "valor": 29.3,
+   "anomalia": -0.04
+  },
+  {
+   "fecha": "1993-08",
+   "valor": 29.12,
+   "anomalia": -0.22
+  },
+  {
+   "fecha": "1993-09",
+   "valor": 28.61,
+   "anomalia": -0.81
+  },
+  {
+   "fecha": "1993-10",
+   "valor": 28.81,
+   "anomalia": -0.51
+  },
+  {
+   "fecha": "1993-11",
+   "valor": 28.53,
+   "anomalia": -0.46
+  },
+  {
+   "fecha": "1993-12",
+   "valor": 28.06,
+   "anomalia": -0.33
+  },
+  {
+   "fecha": "1994-01",
+   "valor": 27.34,
+   "anomalia": -0.14
+  },
+  {
+   "fecha": "1994-02",
+   "valor": 26.57,
+   "anomalia": -0.51
+  },
+  {
+   "fecha": "1994-03",
+   "valor": 26.43,
+   "anomalia": -0.49
+  },
+  {
+   "fecha": "1994-04",
+   "valor": 26.85,
+   "anomalia": -0.57
+  },
+  {
+   "fecha": "1994-05",
+   "valor": 28.16,
+   "anomalia": -0.42
+  },
+  {
+   "fecha": "1994-06",
+   "valor": 28.61,
+   "anomalia": -0.78
+  },
+  {
+   "fecha": "1994-07",
+   "valor": 28.72,
+   "anomalia": -0.61
+  },
+  {
+   "fecha": "1994-08",
+   "valor": 29.1,
+   "anomalia": -0.24
+  },
+  {
+   "fecha": "1994-09",
+   "valor": 28.85,
+   "anomalia": -0.57
+  },
+  {
+   "fecha": "1994-10",
+   "valor": 28.69,
+   "anomalia": -0.63
+  },
+  {
+   "fecha": "1994-11",
+   "valor": 28.56,
+   "anomalia": -0.43
+  },
+  {
+   "fecha": "1994-12",
+   "valor": 27.78,
+   "anomalia": -0.62
+  },
+  {
+   "fecha": "1995-01",
+   "valor": 27.45,
+   "anomalia": -0.04
+  },
+  {
+   "fecha": "1995-02",
+   "valor": 26.89,
+   "anomalia": -0.2
+  },
+  {
+   "fecha": "1995-03",
+   "valor": 27.28,
+   "anomalia": 0.36
+  },
+  {
+   "fecha": "1995-04",
+   "valor": 27.68,
+   "anomalia": 0.25
+  },
+  {
+   "fecha": "1995-05",
+   "valor": 28.94,
+   "anomalia": 0.36
+  },
+  {
+   "fecha": "1995-06",
+   "valor": 29.61,
+   "anomalia": 0.21
+  },
+  {
+   "fecha": "1995-07",
+   "valor": 29.64,
+   "anomalia": 0.3
+  },
+  {
+   "fecha": "1995-08",
+   "valor": 29.17,
+   "anomalia": -0.18
+  },
+  {
+   "fecha": "1995-09",
+   "valor": 29.04,
+   "anomalia": -0.37
+  },
+  {
+   "fecha": "1995-10",
+   "valor": 29.12,
+   "anomalia": -0.19
+  },
+  {
+   "fecha": "1995-11",
+   "valor": 29.34,
+   "anomalia": 0.35
+  },
+  {
+   "fecha": "1995-12",
+   "valor": 28.72,
+   "anomalia": 0.33
+  },
+  {
+   "fecha": "1996-01",
+   "valor": 28.02,
+   "anomalia": 0.54
+  },
+  {
+   "fecha": "1996-02",
+   "valor": 27.21,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "1996-03",
+   "valor": 27.09,
+   "anomalia": 0.17
+  },
+  {
+   "fecha": "1996-04",
+   "valor": 27.09,
+   "anomalia": -0.34
+  },
+  {
+   "fecha": "1996-05",
+   "valor": 28.7,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "1996-06",
+   "valor": 28.79,
+   "anomalia": -0.61
+  },
+  {
+   "fecha": "1996-07",
+   "valor": 28.92,
+   "anomalia": -0.42
+  },
+  {
+   "fecha": "1996-08",
+   "valor": 29.1,
+   "anomalia": -0.24
+  },
+  {
+   "fecha": "1996-09",
+   "valor": 29.02,
+   "anomalia": -0.4
+  },
+  {
+   "fecha": "1996-10",
+   "valor": 28.43,
+   "anomalia": -0.88
+  },
+  {
+   "fecha": "1996-11",
+   "valor": 28.64,
+   "anomalia": -0.35
+  },
+  {
+   "fecha": "1996-12",
+   "valor": 27.48,
+   "anomalia": -0.92
+  },
+  {
+   "fecha": "1997-01",
+   "valor": 26.77,
+   "anomalia": -0.72
+  },
+  {
+   "fecha": "1997-02",
+   "valor": 27.16,
+   "anomalia": 0.08
+  },
+  {
+   "fecha": "1997-03",
+   "valor": 26.69,
+   "anomalia": -0.24
+  },
+  {
+   "fecha": "1997-04",
+   "valor": 26.87,
+   "anomalia": -0.56
+  },
+  {
+   "fecha": "1997-05",
+   "valor": 27.45,
+   "anomalia": -1.13
+  },
+  {
+   "fecha": "1997-06",
+   "valor": 29.3,
+   "anomalia": -0.09
+  },
+  {
+   "fecha": "1997-07",
+   "valor": 29.23,
+   "anomalia": -0.1
+  },
+  {
+   "fecha": "1997-08",
+   "valor": 29.57,
+   "anomalia": 0.23
+  },
+  {
+   "fecha": "1997-09",
+   "valor": 29.48,
+   "anomalia": 0.06
+  },
+  {
+   "fecha": "1997-10",
+   "valor": 28.85,
+   "anomalia": -0.47
+  },
+  {
+   "fecha": "1997-11",
+   "valor": 29.02,
+   "anomalia": 0.03
+  },
+  {
+   "fecha": "1997-12",
+   "valor": 28.44,
+   "anomalia": 0.05
+  },
+  {
+   "fecha": "1998-01",
+   "valor": 27.62,
+   "anomalia": 0.13
+  },
+  {
+   "fecha": "1998-02",
+   "valor": 27.76,
+   "anomalia": 0.67
+  },
+  {
+   "fecha": "1998-03",
+   "valor": 27.42,
+   "anomalia": 0.5
+  },
+  {
+   "fecha": "1998-04",
+   "valor": 27.5,
+   "anomalia": 0.08
+  },
+  {
+   "fecha": "1998-05",
+   "valor": 28.92,
+   "anomalia": 0.34
+  },
+  {
+   "fecha": "1998-06",
+   "valor": 29.58,
+   "anomalia": 0.18
+  },
+  {
+   "fecha": "1998-07",
+   "valor": 29.51,
+   "anomalia": 0.17
+  },
+  {
+   "fecha": "1998-08",
+   "valor": 29.25,
+   "anomalia": -0.09
+  },
+  {
+   "fecha": "1998-09",
+   "valor": 29.99,
+   "anomalia": 0.58
+  },
+  {
+   "fecha": "1998-10",
+   "valor": 29.52,
+   "anomalia": 0.2
+  },
+  {
+   "fecha": "1998-11",
+   "valor": 29.18,
+   "anomalia": 0.19
+  },
+  {
+   "fecha": "1998-12",
+   "valor": 28.53,
+   "anomalia": 0.13
+  },
+  {
+   "fecha": "1999-01",
+   "valor": 27.56,
+   "anomalia": 0.08
+  },
+  {
+   "fecha": "1999-02",
+   "valor": 26.39,
+   "anomalia": -0.7
+  },
+  {
+   "fecha": "1999-03",
+   "valor": 26.82,
+   "anomalia": -0.1
+  },
+  {
+   "fecha": "1999-04",
+   "valor": 27.01,
+   "anomalia": -0.41
+  },
+  {
+   "fecha": "1999-05",
+   "valor": 28.2,
+   "anomalia": -0.38
+  },
+  {
+   "fecha": "1999-06",
+   "valor": 28.79,
+   "anomalia": -0.61
+  },
+  {
+   "fecha": "1999-07",
+   "valor": 29.27,
+   "anomalia": -0.06
+  },
+  {
+   "fecha": "1999-08",
+   "valor": 28.93,
+   "anomalia": -0.41
+  },
+  {
+   "fecha": "1999-09",
+   "valor": 28.98,
+   "anomalia": -0.43
+  },
+  {
+   "fecha": "1999-10",
+   "valor": 28.9,
+   "anomalia": -0.41
+  },
+  {
+   "fecha": "1999-11",
+   "valor": 28.47,
+   "anomalia": -0.52
+  },
+  {
+   "fecha": "1999-12",
+   "valor": 27.67,
+   "anomalia": -0.72
+  },
+  {
+   "fecha": "2000-01",
+   "valor": 26.89,
+   "anomalia": -0.59
+  },
+  {
+   "fecha": "2000-02",
+   "valor": 26.36,
+   "anomalia": -0.73
+  },
+  {
+   "fecha": "2000-03",
+   "valor": 26.06,
+   "anomalia": -0.86
+  },
+  {
+   "fecha": "2000-04",
+   "valor": 26.56,
+   "anomalia": -0.87
+  },
+  {
+   "fecha": "2000-05",
+   "valor": 28.01,
+   "anomalia": -0.57
+  },
+  {
+   "fecha": "2000-06",
+   "valor": 28.88,
+   "anomalia": -0.51
+  },
+  {
+   "fecha": "2000-07",
+   "valor": 28.89,
+   "anomalia": -0.44
+  },
+  {
+   "fecha": "2000-08",
+   "valor": 29.06,
+   "anomalia": -0.28
+  },
+  {
+   "fecha": "2000-09",
+   "valor": 28.9,
+   "anomalia": -0.52
+  },
+  {
+   "fecha": "2000-10",
+   "valor": 29.48,
+   "anomalia": 0.16
+  },
+  {
+   "fecha": "2000-11",
+   "valor": 28.77,
+   "anomalia": -0.22
+  },
+  {
+   "fecha": "2000-12",
+   "valor": 28.76,
+   "anomalia": 0.37
+  },
+  {
+   "fecha": "2001-01",
+   "valor": 27.46,
+   "anomalia": -0.02
+  },
+  {
+   "fecha": "2001-02",
+   "valor": 26.85,
+   "anomalia": -0.24
+  },
+  {
+   "fecha": "2001-03",
+   "valor": 26.63,
+   "anomalia": -0.29
+  },
+  {
+   "fecha": "2001-04",
+   "valor": 26.78,
+   "anomalia": -0.65
+  },
+  {
+   "fecha": "2001-05",
+   "valor": 27.86,
+   "anomalia": -0.72
+  },
+  {
+   "fecha": "2001-06",
+   "valor": 28.62,
+   "anomalia": -0.78
+  },
+  {
+   "fecha": "2001-07",
+   "valor": 29.19,
+   "anomalia": -0.14
+  },
+  {
+   "fecha": "2001-08",
+   "valor": 29.41,
+   "anomalia": 0.07
+  },
+  {
+   "fecha": "2001-09",
+   "valor": 29.21,
+   "anomalia": -0.21
+  },
+  {
+   "fecha": "2001-10",
+   "valor": 29.26,
+   "anomalia": -0.06
+  },
+  {
+   "fecha": "2001-11",
+   "valor": 28.68,
+   "anomalia": -0.3
+  },
+  {
+   "fecha": "2001-12",
+   "valor": 28.25,
+   "anomalia": -0.14
+  },
+  {
+   "fecha": "2002-01",
+   "valor": 28.12,
+   "anomalia": 0.63
+  },
+  {
+   "fecha": "2002-02",
+   "valor": 27.04,
+   "anomalia": -0.05
+  },
+  {
+   "fecha": "2002-03",
+   "valor": 26.85,
+   "anomalia": -0.08
+  },
+  {
+   "fecha": "2002-04",
+   "valor": 26.87,
+   "anomalia": -0.55
+  },
+  {
+   "fecha": "2002-05",
+   "valor": 28.01,
+   "anomalia": -0.57
+  },
+  {
+   "fecha": "2002-06",
+   "valor": 29.37,
+   "anomalia": -0.02
+  },
+  {
+   "fecha": "2002-07",
+   "valor": 29.0,
+   "anomalia": -0.33
+  },
+  {
+   "fecha": "2002-08",
+   "valor": 29.73,
+   "anomalia": 0.39
+  },
+  {
+   "fecha": "2002-09",
+   "valor": 29.88,
+   "anomalia": 0.46
+  },
+  {
+   "fecha": "2002-10",
+   "valor": 29.77,
+   "anomalia": 0.45
+  },
+  {
+   "fecha": "2002-11",
+   "valor": 29.38,
+   "anomalia": 0.39
+  },
+  {
+   "fecha": "2002-12",
+   "valor": 28.65,
+   "anomalia": 0.25
+  },
+  {
+   "fecha": "2003-01",
+   "valor": 27.9,
+   "anomalia": 0.42
+  },
+  {
+   "fecha": "2003-02",
+   "valor": 27.52,
+   "anomalia": 0.43
+  },
+  {
+   "fecha": "2003-03",
+   "valor": 27.71,
+   "anomalia": 0.79
+  },
+  {
+   "fecha": "2003-04",
+   "valor": 27.66,
+   "anomalia": 0.24
+  },
+  {
+   "fecha": "2003-05",
+   "valor": 29.13,
+   "anomalia": 0.55
+  },
+  {
+   "fecha": "2003-06",
+   "valor": 29.22,
+   "anomalia": -0.17
+  },
+  {
+   "fecha": "2003-07",
+   "valor": 29.31,
+   "anomalia": -0.02
+  },
+  {
+   "fecha": "2003-08",
+   "valor": 29.29,
+   "anomalia": -0.05
+  },
+  {
+   "fecha": "2003-09",
+   "valor": 29.03,
+   "anomalia": -0.39
+  },
+  {
+   "fecha": "2003-10",
+   "valor": 29.44,
+   "anomalia": 0.13
+  },
+  {
+   "fecha": "2003-11",
+   "valor": 29.59,
+   "anomalia": 0.6
+  },
+  {
+   "fecha": "2003-12",
+   "valor": 28.65,
+   "anomalia": 0.26
+  },
+  {
+   "fecha": "2004-01",
+   "valor": 27.16,
+   "anomalia": -0.32
+  },
+  {
+   "fecha": "2004-02",
+   "valor": 27.66,
+   "anomalia": 0.58
+  },
+  {
+   "fecha": "2004-03",
+   "valor": 26.79,
+   "anomalia": -0.14
+  },
+  {
+   "fecha": "2004-04",
+   "valor": 27.44,
+   "anomalia": 0.02
+  },
+  {
+   "fecha": "2004-05",
+   "valor": 28.59,
+   "anomalia": 0.01
+  },
+  {
+   "fecha": "2004-06",
+   "valor": 29.82,
+   "anomalia": 0.43
+  },
+  {
+   "fecha": "2004-07",
+   "valor": 29.13,
+   "anomalia": -0.21
+  },
+  {
+   "fecha": "2004-08",
+   "valor": 29.58,
+   "anomalia": 0.24
+  },
+  {
+   "fecha": "2004-09",
+   "valor": 29.14,
+   "anomalia": -0.27
+  },
+  {
+   "fecha": "2004-10",
+   "valor": 29.51,
+   "anomalia": 0.19
+  },
+  {
+   "fecha": "2004-11",
+   "valor": 28.92,
+   "anomalia": -0.07
+  },
+  {
+   "fecha": "2004-12",
+   "valor": 27.83,
+   "anomalia": -0.56
+  },
+  {
+   "fecha": "2005-01",
+   "valor": 27.11,
+   "anomalia": -0.38
+  },
+  {
+   "fecha": "2005-02",
+   "valor": 26.34,
+   "anomalia": -0.74
+  },
+  {
+   "fecha": "2005-03",
+   "valor": 27.59,
+   "anomalia": 0.67
+  },
+  {
+   "fecha": "2005-04",
+   "valor": 28.13,
+   "anomalia": 0.71
+  },
+  {
+   "fecha": "2005-05",
+   "valor": 28.89,
+   "anomalia": 0.31
+  },
+  {
+   "fecha": "2005-06",
+   "valor": 30.07,
+   "anomalia": 0.67
+  },
+  {
+   "fecha": "2005-07",
+   "valor": 30.26,
+   "anomalia": 0.92
+  },
+  {
+   "fecha": "2005-08",
+   "valor": 29.54,
+   "anomalia": 0.2
+  },
+  {
+   "fecha": "2005-09",
+   "valor": 29.78,
+   "anomalia": 0.36
+  },
+  {
+   "fecha": "2005-10",
+   "valor": 29.08,
+   "anomalia": -0.23
+  },
+  {
+   "fecha": "2005-11",
+   "valor": 28.67,
+   "anomalia": -0.32
+  },
+  {
+   "fecha": "2005-12",
+   "valor": 28.79,
+   "anomalia": 0.4
+  },
+  {
+   "fecha": "2006-01",
+   "valor": 27.54,
+   "anomalia": 0.06
+  },
+  {
+   "fecha": "2006-02",
+   "valor": 27.16,
+   "anomalia": 0.08
+  },
+  {
+   "fecha": "2006-03",
+   "valor": 26.79,
+   "anomalia": -0.13
+  },
+  {
+   "fecha": "2006-04",
+   "valor": 27.52,
+   "anomalia": 0.1
+  },
+  {
+   "fecha": "2006-05",
+   "valor": 28.76,
+   "anomalia": 0.18
+  },
+  {
+   "fecha": "2006-06",
+   "valor": 29.85,
+   "anomalia": 0.46
+  },
+  {
+   "fecha": "2006-07",
+   "valor": 29.7,
+   "anomalia": 0.36
+  },
+  {
+   "fecha": "2006-08",
+   "valor": 29.76,
+   "anomalia": 0.42
+  },
+  {
+   "fecha": "2006-09",
+   "valor": 29.53,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "2006-10",
+   "valor": 29.72,
+   "anomalia": 0.4
+  },
+  {
+   "fecha": "2006-11",
+   "valor": 29.08,
+   "anomalia": 0.09
+  },
+  {
+   "fecha": "2006-12",
+   "valor": 28.5,
+   "anomalia": 0.1
+  },
+  {
+   "fecha": "2007-01",
+   "valor": 27.13,
+   "anomalia": -0.35
+  },
+  {
+   "fecha": "2007-02",
+   "valor": 27.41,
+   "anomalia": 0.33
+  },
+  {
+   "fecha": "2007-03",
+   "valor": 27.02,
+   "anomalia": 0.1
+  },
+  {
+   "fecha": "2007-04",
+   "valor": 27.67,
+   "anomalia": 0.25
+  },
+  {
+   "fecha": "2007-05",
+   "valor": 28.66,
+   "anomalia": 0.08
+  },
+  {
+   "fecha": "2007-06",
+   "valor": 29.96,
+   "anomalia": 0.57
+  },
+  {
+   "fecha": "2007-07",
+   "valor": 29.63,
+   "anomalia": 0.3
+  },
+  {
+   "fecha": "2007-08",
+   "valor": 29.52,
+   "anomalia": 0.18
+  },
+  {
+   "fecha": "2007-09",
+   "valor": 29.54,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "2007-10",
+   "valor": 29.53,
+   "anomalia": 0.22
+  },
+  {
+   "fecha": "2007-11",
+   "valor": 28.73,
+   "anomalia": -0.26
+  },
+  {
+   "fecha": "2007-12",
+   "valor": 28.24,
+   "anomalia": -0.16
+  },
+  {
+   "fecha": "2008-01",
+   "valor": 27.35,
+   "anomalia": -0.14
+  },
+  {
+   "fecha": "2008-02",
+   "valor": 27.2,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "2008-03",
+   "valor": 27.01,
+   "anomalia": 0.08
+  },
+  {
+   "fecha": "2008-04",
+   "valor": 27.23,
+   "anomalia": -0.19
+  },
+  {
+   "fecha": "2008-05",
+   "valor": 28.29,
+   "anomalia": -0.29
+  },
+  {
+   "fecha": "2008-06",
+   "valor": 29.22,
+   "anomalia": -0.17
+  },
+  {
+   "fecha": "2008-07",
+   "valor": 28.87,
+   "anomalia": -0.46
+  },
+  {
+   "fecha": "2008-08",
+   "valor": 28.86,
+   "anomalia": -0.48
+  },
+  {
+   "fecha": "2008-09",
+   "valor": 29.63,
+   "anomalia": 0.21
+  },
+  {
+   "fecha": "2008-10",
+   "valor": 29.45,
+   "anomalia": 0.13
+  },
+  {
+   "fecha": "2008-11",
+   "valor": 28.89,
+   "anomalia": -0.1
+  },
+  {
+   "fecha": "2008-12",
+   "valor": 27.9,
+   "anomalia": -0.49
+  },
+  {
+   "fecha": "2009-01",
+   "valor": 27.1,
+   "anomalia": -0.38
+  },
+  {
+   "fecha": "2009-02",
+   "valor": 26.74,
+   "anomalia": -0.34
+  },
+  {
+   "fecha": "2009-03",
+   "valor": 26.32,
+   "anomalia": -0.61
+  },
+  {
+   "fecha": "2009-04",
+   "valor": 27.08,
+   "anomalia": -0.35
+  },
+  {
+   "fecha": "2009-05",
+   "valor": 28.29,
+   "anomalia": -0.29
+  },
+  {
+   "fecha": "2009-06",
+   "valor": 29.08,
+   "anomalia": -0.32
+  },
+  {
+   "fecha": "2009-07",
+   "valor": 29.14,
+   "anomalia": -0.2
+  },
+  {
+   "fecha": "2009-08",
+   "valor": 28.99,
+   "anomalia": -0.35
+  },
+  {
+   "fecha": "2009-09",
+   "valor": 29.49,
+   "anomalia": 0.08
+  },
+  {
+   "fecha": "2009-10",
+   "valor": 29.49,
+   "anomalia": 0.17
+  },
+  {
+   "fecha": "2009-11",
+   "valor": 29.11,
+   "anomalia": 0.13
+  },
+  {
+   "fecha": "2009-12",
+   "valor": 28.71,
+   "anomalia": 0.32
+  },
+  {
+   "fecha": "2010-01",
+   "valor": 27.69,
+   "anomalia": 0.21
+  },
+  {
+   "fecha": "2010-02",
+   "valor": 27.37,
+   "anomalia": 0.29
+  },
+  {
+   "fecha": "2010-03",
+   "valor": 27.63,
+   "anomalia": 0.71
+  },
+  {
+   "fecha": "2010-04",
+   "valor": 28.11,
+   "anomalia": 0.69
+  },
+  {
+   "fecha": "2010-05",
+   "valor": 29.25,
+   "anomalia": 0.67
+  },
+  {
+   "fecha": "2010-06",
+   "valor": 29.46,
+   "anomalia": 0.06
+  },
+  {
+   "fecha": "2010-07",
+   "valor": 29.58,
+   "anomalia": 0.25
+  },
+  {
+   "fecha": "2010-08",
+   "valor": 29.48,
+   "anomalia": 0.14
+  },
+  {
+   "fecha": "2010-09",
+   "valor": 29.32,
+   "anomalia": -0.09
+  },
+  {
+   "fecha": "2010-10",
+   "valor": 29.35,
+   "anomalia": 0.03
+  },
+  {
+   "fecha": "2010-11",
+   "valor": 28.64,
+   "anomalia": -0.35
+  },
+  {
+   "fecha": "2010-12",
+   "valor": 28.22,
+   "anomalia": -0.18
+  },
+  {
+   "fecha": "2011-01",
+   "valor": 27.74,
+   "anomalia": 0.26
+  },
+  {
+   "fecha": "2011-02",
+   "valor": 27.28,
+   "anomalia": 0.19
+  },
+  {
+   "fecha": "2011-03",
+   "valor": 26.7,
+   "anomalia": -0.23
+  },
+  {
+   "fecha": "2011-04",
+   "valor": 27.37,
+   "anomalia": -0.05
+  },
+  {
+   "fecha": "2011-05",
+   "valor": 28.07,
+   "anomalia": -0.51
+  },
+  {
+   "fecha": "2011-06",
+   "valor": 29.38,
+   "anomalia": -0.01
+  },
+  {
+   "fecha": "2011-07",
+   "valor": 29.66,
+   "anomalia": 0.33
+  },
+  {
+   "fecha": "2011-08",
+   "valor": 29.47,
+   "anomalia": 0.13
+  },
+  {
+   "fecha": "2011-09",
+   "valor": 29.73,
+   "anomalia": 0.31
+  },
+  {
+   "fecha": "2011-10",
+   "valor": 29.27,
+   "anomalia": -0.05
+  },
+  {
+   "fecha": "2011-11",
+   "valor": 29.21,
+   "anomalia": 0.22
+  },
+  {
+   "fecha": "2011-12",
+   "valor": 28.53,
+   "anomalia": 0.14
+  },
+  {
+   "fecha": "2012-01",
+   "valor": 27.42,
+   "anomalia": -0.06
+  },
+  {
+   "fecha": "2012-02",
+   "valor": 26.76,
+   "anomalia": -0.32
+  },
+  {
+   "fecha": "2012-03",
+   "valor": 26.29,
+   "anomalia": -0.63
+  },
+  {
+   "fecha": "2012-04",
+   "valor": 27.68,
+   "anomalia": 0.26
+  },
+  {
+   "fecha": "2012-05",
+   "valor": 29.2,
+   "anomalia": 0.62
+  },
+  {
+   "fecha": "2012-06",
+   "valor": 29.66,
+   "anomalia": 0.26
+  },
+  {
+   "fecha": "2012-07",
+   "valor": 29.45,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "2012-08",
+   "valor": 29.35,
+   "anomalia": 0.01
+  },
+  {
+   "fecha": "2012-09",
+   "valor": 29.52,
+   "anomalia": 0.1
+  },
+  {
+   "fecha": "2012-10",
+   "valor": 29.19,
+   "anomalia": -0.13
+  },
+  {
+   "fecha": "2012-11",
+   "valor": 28.93,
+   "anomalia": -0.06
+  },
+  {
+   "fecha": "2012-12",
+   "valor": 28.62,
+   "anomalia": 0.23
+  },
+  {
+   "fecha": "2013-01",
+   "valor": 27.24,
+   "anomalia": -0.24
+  },
+  {
+   "fecha": "2013-02",
+   "valor": 27.1,
+   "anomalia": 0.02
+  },
+  {
+   "fecha": "2013-03",
+   "valor": 26.94,
+   "anomalia": 0.02
+  },
+  {
+   "fecha": "2013-04",
+   "valor": 27.64,
+   "anomalia": 0.22
+  },
+  {
+   "fecha": "2013-05",
+   "valor": 28.48,
+   "anomalia": -0.1
+  },
+  {
+   "fecha": "2013-06",
+   "valor": 29.32,
+   "anomalia": -0.07
+  },
+  {
+   "fecha": "2013-07",
+   "valor": 29.33,
+   "anomalia": 0.0
+  },
+  {
+   "fecha": "2013-08",
+   "valor": 29.22,
+   "anomalia": -0.12
+  },
+  {
+   "fecha": "2013-09",
+   "valor": 29.34,
+   "anomalia": -0.08
+  },
+  {
+   "fecha": "2013-10",
+   "valor": 29.52,
+   "anomalia": 0.21
+  },
+  {
+   "fecha": "2013-11",
+   "valor": 29.3,
+   "anomalia": 0.32
+  },
+  {
+   "fecha": "2013-12",
+   "valor": 28.74,
+   "anomalia": 0.35
+  },
+  {
+   "fecha": "2014-01",
+   "valor": 28.07,
+   "anomalia": 0.59
+  },
+  {
+   "fecha": "2014-02",
+   "valor": 27.62,
+   "anomalia": 0.53
+  },
+  {
+   "fecha": "2014-03",
+   "valor": 27.12,
+   "anomalia": 0.19
+  },
+  {
+   "fecha": "2014-04",
+   "valor": 27.72,
+   "anomalia": 0.3
+  },
+  {
+   "fecha": "2014-05",
+   "valor": 28.49,
+   "anomalia": -0.09
+  },
+  {
+   "fecha": "2014-06",
+   "valor": 29.57,
+   "anomalia": 0.17
+  },
+  {
+   "fecha": "2014-07",
+   "valor": 29.44,
+   "anomalia": 0.11
+  },
+  {
+   "fecha": "2014-08",
+   "valor": 29.53,
+   "anomalia": 0.19
+  },
+  {
+   "fecha": "2014-09",
+   "valor": 29.76,
+   "anomalia": 0.34
+  },
+  {
+   "fecha": "2014-10",
+   "valor": 29.5,
+   "anomalia": 0.18
+  },
+  {
+   "fecha": "2014-11",
+   "valor": 29.36,
+   "anomalia": 0.37
+  },
+  {
+   "fecha": "2014-12",
+   "valor": 28.37,
+   "anomalia": -0.03
+  },
+  {
+   "fecha": "2015-01",
+   "valor": 27.17,
+   "anomalia": -0.32
+  },
+  {
+   "fecha": "2015-02",
+   "valor": 27.32,
+   "anomalia": 0.23
+  },
+  {
+   "fecha": "2015-03",
+   "valor": 26.91,
+   "anomalia": -0.01
+  },
+  {
+   "fecha": "2015-04",
+   "valor": 27.54,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "2015-05",
+   "valor": 28.47,
+   "anomalia": -0.11
+  },
+  {
+   "fecha": "2015-06",
+   "valor": 29.24,
+   "anomalia": -0.16
+  },
+  {
+   "fecha": "2015-07",
+   "valor": 29.01,
+   "anomalia": -0.33
+  },
+  {
+   "fecha": "2015-08",
+   "valor": 29.13,
+   "anomalia": -0.21
+  },
+  {
+   "fecha": "2015-09",
+   "valor": 29.78,
+   "anomalia": 0.36
+  },
+  {
+   "fecha": "2015-10",
+   "valor": 29.76,
+   "anomalia": 0.45
+  },
+  {
+   "fecha": "2015-11",
+   "valor": 29.53,
+   "anomalia": 0.54
+  },
+  {
+   "fecha": "2015-12",
+   "valor": 29.45,
+   "anomalia": 1.05
+  },
+  {
+   "fecha": "2016-01",
+   "valor": 28.51,
+   "anomalia": 1.03
+  },
+  {
+   "fecha": "2016-02",
+   "valor": 27.6,
+   "anomalia": 0.52
+  },
+  {
+   "fecha": "2016-03",
+   "valor": 27.22,
+   "anomalia": 0.3
+  },
+  {
+   "fecha": "2016-04",
+   "valor": 27.83,
+   "anomalia": 0.41
+  },
+  {
+   "fecha": "2016-05",
+   "valor": 29.64,
+   "anomalia": 1.06
+  },
+  {
+   "fecha": "2016-06",
+   "valor": 30.17,
+   "anomalia": 0.77
+  },
+  {
+   "fecha": "2016-07",
+   "valor": 29.83,
+   "anomalia": 0.49
+  },
+  {
+   "fecha": "2016-08",
+   "valor": 29.73,
+   "anomalia": 0.39
+  },
+  {
+   "fecha": "2016-09",
+   "valor": 30.03,
+   "anomalia": 0.62
+  },
+  {
+   "fecha": "2016-10",
+   "valor": 29.58,
+   "anomalia": 0.27
+  },
+  {
+   "fecha": "2016-11",
+   "valor": 29.22,
+   "anomalia": 0.23
+  },
+  {
+   "fecha": "2016-12",
+   "valor": 28.83,
+   "anomalia": 0.43
+  },
+  {
+   "fecha": "2017-01",
+   "valor": 27.38,
+   "anomalia": -0.1
+  },
+  {
+   "fecha": "2017-02",
+   "valor": 27.55,
+   "anomalia": 0.46
+  },
+  {
+   "fecha": "2017-03",
+   "valor": 27.37,
+   "anomalia": 0.44
+  },
+  {
+   "fecha": "2017-04",
+   "valor": 28.05,
+   "anomalia": 0.63
+  },
+  {
+   "fecha": "2017-05",
+   "valor": 29.73,
+   "anomalia": 1.15
+  },
+  {
+   "fecha": "2017-06",
+   "valor": 29.97,
+   "anomalia": 0.58
+  },
+  {
+   "fecha": "2017-07",
+   "valor": 29.81,
+   "anomalia": 0.48
+  },
+  {
+   "fecha": "2017-08",
+   "valor": 29.82,
+   "anomalia": 0.48
+  },
+  {
+   "fecha": "2017-09",
+   "valor": 30.22,
+   "anomalia": 0.8
+  },
+  {
+   "fecha": "2017-10",
+   "valor": 30.08,
+   "anomalia": 0.76
+  },
+  {
+   "fecha": "2017-11",
+   "valor": 29.48,
+   "anomalia": 0.49
+  },
+  {
+   "fecha": "2017-12",
+   "valor": 29.06,
+   "anomalia": 0.67
+  },
+  {
+   "fecha": "2018-01",
+   "valor": 28.23,
+   "anomalia": 0.75
+  },
+  {
+   "fecha": "2018-02",
+   "valor": 26.96,
+   "anomalia": -0.13
+  },
+  {
+   "fecha": "2018-03",
+   "valor": 27.11,
+   "anomalia": 0.18
+  },
+  {
+   "fecha": "2018-04",
+   "valor": 27.88,
+   "anomalia": 0.46
+  },
+  {
+   "fecha": "2018-05",
+   "valor": 29.31,
+   "anomalia": 0.73
+  },
+  {
+   "fecha": "2018-06",
+   "valor": 29.68,
+   "anomalia": 0.29
+  },
+  {
+   "fecha": "2018-07",
+   "valor": 29.43,
+   "anomalia": 0.09
+  },
+  {
+   "fecha": "2018-08",
+   "valor": 29.48,
+   "anomalia": 0.14
+  },
+  {
+   "fecha": "2018-09",
+   "valor": 29.41,
+   "anomalia": -0.01
+  },
+  {
+   "fecha": "2018-10",
+   "valor": 29.2,
+   "anomalia": -0.12
+  },
+  {
+   "fecha": "2018-11",
+   "valor": 29.1,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "2018-12",
+   "valor": 28.14,
+   "anomalia": -0.26
+  },
+  {
+   "fecha": "2019-01",
+   "valor": 27.57,
+   "anomalia": 0.09
+  },
+  {
+   "fecha": "2019-02",
+   "valor": 27.28,
+   "anomalia": 0.19
+  },
+  {
+   "fecha": "2019-03",
+   "valor": 26.83,
+   "anomalia": -0.1
+  },
+  {
+   "fecha": "2019-04",
+   "valor": 27.48,
+   "anomalia": 0.06
+  },
+  {
+   "fecha": "2019-05",
+   "valor": 28.62,
+   "anomalia": 0.04
+  },
+  {
+   "fecha": "2019-06",
+   "valor": 29.55,
+   "anomalia": 0.16
+  },
+  {
+   "fecha": "2019-07",
+   "valor": 29.48,
+   "anomalia": 0.15
+  },
+  {
+   "fecha": "2019-08",
+   "valor": 29.75,
+   "anomalia": 0.41
+  },
+  {
+   "fecha": "2019-09",
+   "valor": 30.05,
+   "anomalia": 0.63
+  },
+  {
+   "fecha": "2019-10",
+   "valor": 29.77,
+   "anomalia": 0.45
+  },
+  {
+   "fecha": "2019-11",
+   "valor": 29.36,
+   "anomalia": 0.37
+  },
+  {
+   "fecha": "2019-12",
+   "valor": 28.96,
+   "anomalia": 0.56
+  },
+  {
+   "fecha": "2020-01",
+   "valor": 27.99,
+   "anomalia": 0.51
+  },
+  {
+   "fecha": "2020-02",
+   "valor": 27.38,
+   "anomalia": 0.3
+  },
+  {
+   "fecha": "2020-03",
+   "valor": 26.98,
+   "anomalia": 0.06
+  },
+  {
+   "fecha": "2020-04",
+   "valor": 27.58,
+   "anomalia": 0.16
+  },
+  {
+   "fecha": "2020-05",
+   "valor": 28.96,
+   "anomalia": 0.38
+  },
+  {
+   "fecha": "2020-06",
+   "valor": 29.86,
+   "anomalia": 0.46
+  },
+  {
+   "fecha": "2020-07",
+   "valor": 29.68,
+   "anomalia": 0.35
+  },
+  {
+   "fecha": "2020-08",
+   "valor": 29.79,
+   "anomalia": 0.45
+  },
+  {
+   "fecha": "2020-09",
+   "valor": 29.88,
+   "anomalia": 0.46
+  },
+  {
+   "fecha": "2020-10",
+   "valor": 29.68,
+   "anomalia": 0.36
+  },
+  {
+   "fecha": "2020-11",
+   "valor": 29.48,
+   "anomalia": 0.5
+  },
+  {
+   "fecha": "2020-12",
+   "valor": 28.92,
+   "anomalia": 0.52
+  },
+  {
+   "fecha": "2021-01",
+   "valor": 28.06,
+   "anomalia": 0.58
+  },
+  {
+   "fecha": "2021-02",
+   "valor": 27.91,
+   "anomalia": 0.83
+  },
+  {
+   "fecha": "2021-03",
+   "valor": 27.17,
+   "anomalia": 0.25
+  },
+  {
+   "fecha": "2021-04",
+   "valor": 27.91,
+   "anomalia": 0.49
+  },
+  {
+   "fecha": "2021-05",
+   "valor": 28.68,
+   "anomalia": 0.1
+  },
+  {
+   "fecha": "2021-06",
+   "valor": 29.29,
+   "anomalia": -0.11
+  },
+  {
+   "fecha": "2021-07",
+   "valor": 29.52,
+   "anomalia": 0.19
+  },
+  {
+   "fecha": "2021-08",
+   "valor": 29.53,
+   "anomalia": 0.19
+  },
+  {
+   "fecha": "2021-09",
+   "valor": 29.77,
+   "anomalia": 0.35
+  },
+  {
+   "fecha": "2021-10",
+   "valor": 29.72,
+   "anomalia": 0.4
+  },
+  {
+   "fecha": "2021-11",
+   "valor": 29.52,
+   "anomalia": 0.53
+  },
+  {
+   "fecha": "2021-12",
+   "valor": 28.67,
+   "anomalia": 0.28
+  },
+  {
+   "fecha": "2022-01",
+   "valor": 27.62,
+   "anomalia": 0.14
+  },
+  {
+   "fecha": "2022-02",
+   "valor": 27.41,
+   "anomalia": 0.33
+  },
+  {
+   "fecha": "2022-03",
+   "valor": 27.5,
+   "anomalia": 0.58
+  },
+  {
+   "fecha": "2022-04",
+   "valor": 28.41,
+   "anomalia": 0.98
+  },
+  {
+   "fecha": "2022-05",
+   "valor": 29.47,
+   "anomalia": 0.89
+  },
+  {
+   "fecha": "2022-06",
+   "valor": 29.56,
+   "anomalia": 0.16
+  },
+  {
+   "fecha": "2022-07",
+   "valor": 29.57,
+   "anomalia": 0.24
+  },
+  {
+   "fecha": "2022-08",
+   "valor": 29.35,
+   "anomalia": 0.01
+  },
+  {
+   "fecha": "2022-09",
+   "valor": 29.64,
+   "anomalia": 0.22
+  },
+  {
+   "fecha": "2022-10",
+   "valor": 29.6,
+   "anomalia": 0.28
+  },
+  {
+   "fecha": "2022-11",
+   "valor": 29.22,
+   "anomalia": 0.23
+  },
+  {
+   "fecha": "2022-12",
+   "valor": 28.34,
+   "anomalia": -0.06
+  },
+  {
+   "fecha": "2023-01",
+   "valor": 27.99,
+   "anomalia": 0.5
+  },
+  {
+   "fecha": "2023-02",
+   "valor": 27.1,
+   "anomalia": 0.01
+  },
+  {
+   "fecha": "2023-03",
+   "valor": 27.11,
+   "anomalia": 0.18
+  },
+  {
+   "fecha": "2023-04",
+   "valor": 27.54,
+   "anomalia": 0.12
+  },
+  {
+   "fecha": "2023-05",
+   "valor": 28.69,
+   "anomalia": 0.11
+  },
+  {
+   "fecha": "2023-06",
+   "valor": 30.02,
+   "anomalia": 0.63
+  },
+  {
+   "fecha": "2023-07",
+   "valor": 30.07,
+   "anomalia": 0.73
+  },
+  {
+   "fecha": "2023-08",
+   "valor": 30.39,
+   "anomalia": 1.05
+  },
+  {
+   "fecha": "2023-09",
+   "valor": 30.45,
+   "anomalia": 1.03
+  },
+  {
+   "fecha": "2023-10",
+   "valor": 30.5,
+   "anomalia": 1.19
+  },
+  {
+   "fecha": "2023-11",
+   "valor": 29.98,
+   "anomalia": 0.99
+  },
+  {
+   "fecha": "2023-12",
+   "valor": 29.27,
+   "anomalia": 0.87
+  },
+  {
+   "fecha": "2024-01",
+   "valor": 28.71,
+   "anomalia": 1.23
+  },
+  {
+   "fecha": "2024-02",
+   "valor": 28.34,
+   "anomalia": 1.26
+  },
+  {
+   "fecha": "2024-03",
+   "valor": 28.62,
+   "anomalia": 1.7
+  },
+  {
+   "fecha": "2024-04",
+   "valor": 28.44,
+   "anomalia": 1.02
+  },
+  {
+   "fecha": "2024-05",
+   "valor": 30.03,
+   "anomalia": 1.45
+  },
+  {
+   "fecha": "2024-06",
+   "valor": 30.14,
+   "anomalia": 0.74
+  },
+  {
+   "fecha": "2024-07",
+   "valor": 30.29,
+   "anomalia": 0.96
+  },
+  {
+   "fecha": "2024-08",
+   "valor": 30.4,
+   "anomalia": 1.06
+  },
+  {
+   "fecha": "2024-09",
+   "valor": 30.61,
+   "anomalia": 1.19
+  },
+  {
+   "fecha": "2024-10",
+   "valor": 30.27,
+   "anomalia": 0.96
+  },
+  {
+   "fecha": "2024-11",
+   "valor": 29.83,
+   "anomalia": 0.84
+  },
+  {
+   "fecha": "2024-12",
+   "valor": 29.44,
+   "anomalia": 1.04
+  },
+  {
+   "fecha": "2025-01",
+   "valor": 28.79,
+   "anomalia": 1.31
+  },
+  {
+   "fecha": "2025-02",
+   "valor": 28.35,
+   "anomalia": 1.26
+  },
+  {
+   "fecha": "2025-03",
+   "valor": 27.94,
+   "anomalia": 1.02
+  },
+  {
+   "fecha": "2025-04",
+   "valor": 28.45,
+   "anomalia": 1.03
+  },
+  {
+   "fecha": "2025-05",
+   "valor": 29.34,
+   "anomalia": 0.76
+  },
+  {
+   "fecha": "2025-06",
+   "valor": 29.56,
+   "anomalia": 0.16
+  },
+  {
+   "fecha": "2025-07",
+   "valor": 29.57,
+   "anomalia": 0.23
+  },
+  {
+   "fecha": "2025-08",
+   "valor": 29.67,
+   "anomalia": 0.33
+  },
+  {
+   "fecha": "2025-09",
+   "valor": 30.13,
+   "anomalia": 0.71
+  },
+  {
+   "fecha": "2025-10",
+   "valor": 29.83,
+   "anomalia": 0.51
+  },
+  {
+   "fecha": "2025-11",
+   "valor": 29.45,
+   "anomalia": 0.46
+  },
+  {
+   "fecha": "2025-12",
+   "valor": 28.92,
+   "anomalia": 0.53
+  },
+  {
+   "fecha": "2026-01",
+   "valor": 28.19,
+   "anomalia": 0.7
+  },
+  {
+   "fecha": "2026-02",
+   "valor": 27.64,
+   "anomalia": 0.55
+  },
+  {
+   "fecha": "2026-03",
+   "valor": 28.14,
+   "anomalia": 1.21
+  },
+  {
+   "fecha": "2026-04",
+   "valor": 28.26,
+   "anomalia": 0.84
+  },
+  {
+   "fecha": "2026-05",
+   "valor": 29.26,
+   "anomalia": 0.68
+  },
+  {
+   "fecha": "2026-06",
+   "valor": 29.82,
+   "anomalia": 0.42
+  },
+  {
+   "fecha": "2026-07",
+   "valor": 29.4,
+   "anomalia": 0.06
+  },
+  {
+   "fecha": "2026-08",
+   "valor": 29.78,
+   "anomalia": 0.44
+  }
+ ]
+}
