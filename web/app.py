@@ -1,6 +1,8 @@
 """API + sitio web. Ejecutar: uvicorn web.app:app --reload"""
 import datetime as dt
 import time
+
+import ee
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, Query
@@ -62,7 +64,10 @@ def capa(region_id: str,
         comp, _ = imagery.annual_composite(geom, anio, sensor)
         img = imagery.layer_image(comp, capa)
         vis = imagery.VIS[capa]
-    url = img.getMapId(vis)["tile_fetcher"].url_format
+    try:
+        url = img.getMapId(vis)["tile_fetcher"].url_format
+    except ee.EEException as e:
+        raise HTTPException(502, f"Earth Engine rechazó la solicitud: {e}")
     _cache[key] = (time.time(), url)
     return {"url": url}
 
