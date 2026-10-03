@@ -1,0 +1,74 @@
+# Regiones monitoreadas. bbox = [lon_min, lat_min, lon_max, lat_max] (WGS84).
+# Las coordenadas son aproximadas: ajústalas en geojson.io antes de producción.
+regiones:
+  - id: puerto_colombia
+    nombre: Puerto Colombia, Atlántico
+    tema: Erosión costera
+    bbox: [-74.99, 10.97, -74.90, 11.03]
+    sensor: landsat        # landsat (1985+) | sentinel2 (2017+)
+    capa_video: rgb        # rgb | ndvi | agua
+    metrica: agua          # agua (km² de agua) | ndvi (NDVI medio)
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: covenas
+    nombre: Coveñas, Sucre
+    tema: Erosión costera
+    bbox: [-75.72, 9.38, -75.60, 9.48]
+    sensor: landsat
+    capa_video: rgb
+    metrica: agua
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: cienaga_grande
+    nombre: Ciénaga Grande de Santa Marta
+    tema: Manglares
+    bbox: [-74.60, 10.65, -74.25, 11.05]
+    sensor: landsat
+    capa_video: ndvi
+    metrica: ndvi
+    anio_inicio: 1988
+    paso_anios: 2
+
+  - id: la_mojana
+    nombre: La Mojana
+    tema: Inundaciones
+    bbox: [-75.10, 8.20, -74.40, 8.90]
+    sensor: sentinel2
+    capa_video: agua
+    metrica: agua
+    anio_inicio: 2017
+    paso_anios: 1
+
+  - id: alta_guajira
+    nombre: Alta Guajira
+    tema: Sequía y vegetación
+    bbox: [-72.40, 11.60, -71.60, 12.30]
+    sensor: landsat
+    capa_video: ndvi
+    metrica: ndvi
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: islas_rosario
+    nombre: Islas del Rosario
+    tema: Temperatura del mar
+    bbox: [-75.85, 10.13, -75.70, 10.22]
+    sensor: sentinel2
+    capa_video: rgb
+    metrica: agua
+    anio_inicio: 2017
+    paso_anios: 1
+
+clima:
+  anio_inicio: 1991
+  climatologia: [1991, 2020]   # periodo de referencia para anomalías
+
+video:
+  fps: 30
+  segundos_por_cuadro: 1.2
+  segundos_transicion: 0.4
+  segundos_cierre: 3.5
+  privacidad: public          # public | unlisted | private
+  hashtags: ["#Shorts", "#Caribe", "#Colombia", "#CambioClimatico", "#Satelite"]

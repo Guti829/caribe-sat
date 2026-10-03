@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: caribesat
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn web.app:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true   # cada commit del proceso semanal refresca los datos
+    envVars:
+      - key: GEE_PROJECT
+        sync: false
+      - key: GEE_SERVICE_ACCOUNT_JSON
+        sync: false
