@@ -40,7 +40,7 @@
 
   /* ---- Mapa (héroe) ---- */
   .mapa { position: relative; min-height: 55vh; }
-  #map { position: absolute; inset: 0; background: #cfd6cf; }
+  #map { position: absolute; inset: 0; background: #0c2630; }
   .reloj {
     position: absolute; left: 24px; bottom: 24px; z-index: 500;
     color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.55);
@@ -156,8 +156,12 @@ const S = { regiones: [], region: null, capa: "rgb", anio: hoy, videos: [] };
 
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const map = L.map("map", { zoomControl: true, attributionControl: true });
-L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-  { attribution: "© OpenStreetMap, © CARTO", maxZoom: 18 }).addTo(map);
+// Mapa base: imagen satelital de Esri (sin llave) + capa de nombres por encima de los datos
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "Base: Esri, Maxar, Earthstar Geographics", maxZoom: 18 }).addTo(map);
+map.createPane("nombres"); map.getPane("nombres").style.zIndex = 450; map.getPane("nombres").style.pointerEvents = "none";
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+  { pane: "nombres", maxZoom: 18 }).addTo(map);
 let satLayer = null, marco = null;
 
 function aviso(txt) { const el = document.getElementById("avisoMapa"); el.textContent = txt || ""; el.style.display = txt ? "block" : "none"; }
@@ -171,7 +175,8 @@ async function cargarCapa() {
   const cargando = document.getElementById("cargando"); cargando.style.display = "block";
   try {
     const res = await fetch(`/api/capas/${r.id}?capa=${S.capa}&anio=${S.anio}`);
-    const j = await res.json();
+    let j = {};
+    try { j = await res.json(); } catch { j = { detail: `el servidor respondió ${res.status}.` }; }
     if (!res.ok) throw new Error(j.detail || "No se pudo generar la capa.");
     if (satLayer) map.removeLayer(satLayer);
     satLayer = L.tileLayer(j.url, { opacity: 0.95, attribution: "Google Earth Engine" }).addTo(map);
