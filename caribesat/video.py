@@ -13,9 +13,9 @@ ACCENT = (224, 170, 72)    # ocre sedimento
 LINE = (62, 150, 170)
 
 FONT_DIRS = ["/usr/share/fonts/truetype/dejavu", "/Library/Fonts", "C:/Windows/Fonts"]
-UNITS = {"agua": "km² de agua", "ndvi": "NDVI medio (vegetación)"}
+UNITS = {"agua": "km² de agua", "ndvi": "NDVI medio (vegetación)", "urbano": "km² urbanizados"}
 LAYER_TXT = {"rgb": "Color natural", "ndvi": "Vigor de la vegetación (NDVI)",
-             "agua": "Superficie de agua (MNDWI)"}
+             "agua": "Superficie de agua (MNDWI)", "urbano": "Zona construida (NDBI)"}
 SOURCES = {"landsat": "Landsat 5/7/8/9 · USGS/NASA", "sentinel2": "Sentinel-2 · ESA Copernicus"}
 
 

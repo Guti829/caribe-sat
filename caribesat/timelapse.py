@@ -15,9 +15,11 @@ def _metric(composite, geom, metrica: str, scale: int):
         v = imagery.ndvi(composite).reduceRegion(
             ee.Reducer.mean(), geom, scale, maxPixels=1e10, bestEffort=True).get("ndvi")
         return v
-    area = (imagery.water_mask(composite).selfMask().multiply(ee.Image.pixelArea())
+    mask = imagery.built_mask(composite) if metrica == "urbano" else imagery.water_mask(composite)
+    band = "urbano" if metrica == "urbano" else "agua"
+    area = (mask.selfMask().multiply(ee.Image.pixelArea())
             .reduceRegion(ee.Reducer.sum(), geom, scale, maxPixels=1e10, bestEffort=True)
-            .get("agua"))
+            .get(band))
     return ee.Number(area).divide(1e6)
 
 

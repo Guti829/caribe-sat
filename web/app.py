@@ -40,7 +40,7 @@ def regiones():
 
 @app.get("/api/capas/{region_id}")
 def capa(region_id: str,
-         capa: str = Query("rgb", pattern="^(rgb|ndvi|agua|inundacion)$"),
+         capa: str = Query("rgb", pattern="^(rgb|ndvi|agua|urbano|inundacion)$"),
          anio: int = Query(dt.date.today().year)):
     if not EE_OK["ok"]:
         raise HTTPException(503, f"Earth Engine no está disponible: {EE_OK['error']}")

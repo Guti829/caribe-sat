@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.2/plotly.min.js"></script>
 <style>
   :root {
     --arena: #E7EAE3;     /* fondo: arena gris de playa */
@@ -86,7 +85,10 @@
   input[type=range] { width: 100%; accent-color: var(--sedimento); }
   button:focus-visible, input:focus-visible { outline: 3px solid var(--sedimento); outline-offset: 2px; }
 
-  .grafica { width: 100%; height: 240px; }
+  .grafica { width: 100%; min-height: 60px; }
+  svg.g { width: 100%; height: auto; display: block; overflow: visible; }
+  svg.g text { fill: currentColor; opacity: .65; font-size: 11px; font-family: inherit; }
+  .grupo { font-size: 14px; opacity: .7; margin: 18px 0 2px; }
   .vacio { font-size: 15px; padding: 14px 0; opacity: .8; border-top: 1px dashed var(--regla); }
   .videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
   .videos iframe { width: 100%; aspect-ratio: 9/16; border: 0; border-radius: 6px; }
@@ -115,12 +117,13 @@
     <h1>CaribeSat</h1>
     <p class="intro">Cambios en la costa, el agua y la vegetación del Caribe colombiano, medidos con satélites públicos.</p>
 
-    <div class="regiones" id="regiones" role="group" aria-label="Regiones"></div>
+    <div id="regiones" role="group" aria-label="Regiones"></div>
 
     <div class="capas" id="capas" role="group" aria-label="Capa del mapa">
       <button data-capa="rgb">Color natural</button>
       <button data-capa="ndvi">Vegetación</button>
       <button data-capa="agua">Agua</button>
+      <button data-capa="urbano">Zona urbana</button>
       <button data-capa="inundacion">Inundación reciente</button>
     </div>
     <div class="deslizador">
@@ -148,11 +151,12 @@
 </div>
 
 <script>
-const CAPA_TXT = { rgb: "Color natural", ndvi: "Vigor de la vegetación", agua: "Superficie de agua", inundacion: "Agua detectada por radar, últimos 60 días" };
+const CAPA_TXT = { rgb: "Color natural", ndvi: "Vigor de la vegetación", agua: "Superficie de agua", urbano: "Zona construida", inundacion: "Agua detectada por radar, últimos 60 días" };
 const METRICA = { agua: ["Superficie de agua", "Kilómetros cuadrados de agua dentro del área, por año (MNDWI)."],
-                  ndvi: ["Vigor de la vegetación", "NDVI medio del área, por año. Más alto indica más vegetación sana."] };
+                  ndvi: ["Vigor de la vegetación", "NDVI medio del área, por año. Más alto indica más vegetación sana."],
+                  urbano: ["Crecimiento urbano", "Kilómetros cuadrados construidos dentro del área, por año (NDBI)."] };
 const hoy = new Date().getFullYear();
-const S = { regiones: [], region: null, capa: "rgb", anio: hoy, videos: [] };
+const S = { regiones: [], region: null, capa: "rgb", anio: hoy - 1, videos: [] };
 
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const map = L.map("map", { zoomControl: true, attributionControl: true });
@@ -186,14 +190,27 @@ async function cargarCapa() {
   } finally { cargando.style.display = "none"; }
 }
 
-function layout(yTitle) {
-  return { margin: { l: 44, r: 8, t: 8, b: 32 }, paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)",
-    font: { family: "Archivo, sans-serif", size: 12, color: css("--tinta") },
-    xaxis: { gridcolor: css("--regla") }, yaxis: { title: yTitle, gridcolor: css("--regla"), zerolinecolor: css("--tinta") },
-    showlegend: false };
+function grafica(id, datos, { tipo = "linea", fmt = v => v.toFixed(1), xs = null } = {}) {
+  const el = document.getElementById(id);
+  const W = 420, H = 170, L = 42, R = 8, T = 10, B = 24;
+  const ys = datos.map(d => d.y); let y0 = Math.min(...ys), y1 = Math.max(...ys);
+  if (tipo === "barras") { const m = Math.max(Math.abs(y0), Math.abs(y1)) || 1; y0 = -m; y1 = m; }
+  else { const p = (y1 - y0) * .08 || 1; y0 -= p; y1 += p; }
+  const n = datos.length, X = i => L + i / Math.max(n - 1, 1) * (W - L - R), Y = y => T + (y1 - y) / (y1 - y0) * (H - T - B);
+  let s = `<svg class="g" viewBox="0 0 ${W} ${H}" role="img">`;
+  [y0, (y0 + y1) / 2, y1].forEach(v => s += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${css("--regla")}"/><text x="${L - 6}" y="${Y(v) + 4}" text-anchor="end">${fmt(v)}</text>`);
+  const paso = Math.max(1, Math.round(n / 5));
+  for (let i = 0; i < n; i += paso) s += `<text x="${X(i)}" y="${H - 6}" text-anchor="middle">${datos[i].etq}</text>`;
+  if (tipo === "barras") {
+    const w = Math.max(1, (W - L - R) / n - .6);
+    datos.forEach((d, i) => s += `<rect x="${X(i) - w / 2}" y="${Math.min(Y(d.y), Y(0))}" width="${w}" height="${Math.abs(Y(d.y) - Y(0))}" fill="${d.y >= 0 ? css("--cienaga") : css("--sedimento")}"/>`);
+  } else {
+    s += `<polyline fill="none" stroke="${css("--cienaga")}" stroke-width="2.4" stroke-linejoin="round" points="${datos.map((d, i) => `${X(i)},${Y(d.y)}`).join(" ")}"/>`;
+    if (n < 60) datos.forEach((d, i) => s += `<circle cx="${X(i)}" cy="${Y(d.y)}" r="3.5" fill="${css("--sedimento")}"/>`);
+  }
+  el.innerHTML = s + "</svg>";
 }
-function vacio(id, txt) { Plotly.purge(id); document.getElementById(id).innerHTML = `<p class="vacio">${txt}</p>`; }
-const cfgPlot = { displayModeBar: false, responsive: true };
+function vacio(id, txt) { document.getElementById(id).innerHTML = `<p class="vacio">${txt}</p>`; }
 
 async function cargarSeries() {
   const r = S.region;
@@ -202,30 +219,22 @@ async function cargarSeries() {
   document.getElementById("metricaNota").textContent = n;
   let d = null;
   try { const res = await fetch(`/static/data/${r.id}.json?v=${Date.now()}`); if (res.ok) d = await res.json(); } catch {}
-  const falta = "Aún no hay datos para esta región. Se generan con el proceso semanal.";
+  const falta = "Aún no hay datos para esta región. Se generan con el proceso semanal de GitHub.";
 
   const m = d?.metrica_anual?.filter(p => p.valor !== null);
-  if (m?.length) {
-    document.getElementById("gMetrica").innerHTML = "";
-    Plotly.react("gMetrica", [{ x: m.map(p => p.anio), y: m.map(p => p.valor), mode: "lines+markers",
-      line: { color: css("--cienaga"), width: 3 }, marker: { color: css("--sedimento"), size: 7 } }],
-      layout(r.metrica === "agua" ? "km²" : "NDVI"), cfgPlot);
-  } else vacio("gMetrica", falta);
+  if (m?.length > 1) grafica("gMetrica", m.map(p => ({ y: p.valor, etq: p.anio })), { fmt: v => r.metrica === "ndvi" ? v.toFixed(2) : v.toFixed(1) });
+  else vacio("gMetrica", falta);
 
   const ll = d?.lluvia?.filter(p => p.anomalia !== null).slice(-120);
-  if (ll?.length) {
-    document.getElementById("gLluvia").innerHTML = "";
-    Plotly.react("gLluvia", [{ type: "bar", x: ll.map(p => p.fecha), y: ll.map(p => p.anomalia),
-      marker: { color: ll.map(p => p.anomalia >= 0 ? css("--cienaga") : css("--sedimento")) } }],
-      layout("mm"), cfgPlot);
-  } else vacio("gLluvia", falta);
+  if (ll?.length) grafica("gLluvia", ll.map(p => ({ y: p.anomalia, etq: p.fecha.slice(0, 4) })), { tipo: "barras", fmt: v => v.toFixed(0) });
+  else vacio("gLluvia", falta);
 
-  const sst = d?.sst?.slice(-240);
-  if (sst?.length) {
-    document.getElementById("gSst").innerHTML = "";
-    Plotly.react("gSst", [{ x: sst.map(p => p.fecha), y: sst.map(p => p.valor), mode: "lines",
-      line: { color: css("--mangle"), width: 2 } }], layout("°C"), cfgPlot);
-  } else vacio("gSst", falta);
+  if (r.mar === false) vacio("gSst", "No aplica: esta ciudad no tiene costa.");
+  else {
+    const sst = d?.sst?.slice(-240);
+    if (sst?.length) grafica("gSst", sst.map(p => ({ y: p.valor, etq: p.fecha.slice(0, 4) })));
+    else vacio("gSst", falta);
+  }
 
   if (d?.actualizado) document.getElementById("pie").dataset.act = d.actualizado;
 }
@@ -266,8 +275,10 @@ rango.addEventListener("change", cargarCapa);
 (async () => {
   S.regiones = await (await fetch("/api/regiones")).json();
   try { const v = await fetch("/static/data/videos.json"); if (v.ok) S.videos = await v.json(); } catch {}
-  document.getElementById("regiones").innerHTML = S.regiones.map(r =>
-    `<button data-id="${r.id}" aria-pressed="false"><span>${r.nombre}</span><span>${r.tema}</span></button>`).join("");
+  const grupos = [...new Set(S.regiones.map(r => r.grupo || "Regiones"))];
+  document.getElementById("regiones").innerHTML = grupos.map(g => `<p class="grupo">${g}</p><div class="regiones">` +
+    S.regiones.filter(r => (r.grupo || "Regiones") === g).map(r =>
+      `<button data-id="${r.id}" aria-pressed="false"><span>${r.nombre}</span><span>${r.tema}</span></button>`).join("") + "</div>").join("");
   document.querySelectorAll("#regiones button").forEach(b =>
     b.addEventListener("click", () => elegirRegion(S.regiones.find(r => r.id === b.dataset.id))));
   elegirRegion(S.regiones[0]);

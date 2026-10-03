@@ -36,7 +36,8 @@ def cmd_series(cfg, only=None):
             "region": r,
             "actualizado": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"),
             "lluvia": climate.precipitation(geom, c["anio_inicio"], ref),
-            "sst": climate.sea_surface_temperature(geom, c["anio_inicio"], ref),
+            "sst": (climate.sea_surface_temperature(geom, c["anio_inicio"], ref)
+                    if r.get("mar", True) else None),
         })
         _write_json(path, data)
 

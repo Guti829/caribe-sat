@@ -69,6 +69,12 @@ def water_mask(img):
     return mndwi(img).gt(0).rename("agua")
 
 
+def built_mask(img):
+    """Área construida aproximada: NDBI > 0, poca vegetación y sin agua."""
+    ndbi = img.normalizedDifference(["swir1", "nir"])
+    return ndbi.gt(0).And(ndvi(img).lt(0.25)).And(mndwi(img).lt(0)).rename("urbano")
+
+
 def s1_water(geom, start, end, threshold_db=-18):
     """Agua / inundación con radar Sentinel-1 (funciona con nubes)."""
     vv = (ee.ImageCollection("COPERNICUS/S1_GRD")
@@ -86,6 +92,7 @@ VIS = {
              "palette": ["8c5a2b", "c9a15b", "e8dfa0", "8fbf6a", "3d8a4a", "114d2c"]},
     "agua": {"min": 0, "max": 1, "palette": ["d9d2bf", "1f6fa3"]},
     "inundacion": {"min": 0, "max": 1, "palette": ["1f6fa3"]},
+    "urbano": {"min": 0, "max": 1, "palette": ["d9d2bf", "c4462f"]},
 }
 
 
@@ -94,6 +101,8 @@ def layer_image(composite, layer: str):
         return ndvi(composite)
     if layer == "agua":
         return water_mask(composite)
+    if layer == "urbano":
+        return built_mask(composite)
     return composite
 
 

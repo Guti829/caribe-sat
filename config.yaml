@@ -1,18 +1,21 @@
 # Regiones monitoreadas. bbox = [lon_min, lat_min, lon_max, lat_max] (WGS84).
 # Las coordenadas son aproximadas: ajústalas en geojson.io antes de producción.
 regiones:
+  # ---------- Ecosistemas ----------
   - id: puerto_colombia
     nombre: Puerto Colombia, Atlántico
+    grupo: Ecosistemas
     tema: Erosión costera
     bbox: [-74.99, 10.97, -74.90, 11.03]
     sensor: landsat        # landsat (1985+) | sentinel2 (2017+)
-    capa_video: rgb        # rgb | ndvi | agua
-    metrica: agua          # agua (km² de agua) | ndvi (NDVI medio)
+    capa_video: rgb        # rgb | ndvi | agua | urbano
+    metrica: agua          # agua (km²) | ndvi (NDVI medio) | urbano (km² construidos)
     anio_inicio: 1990
     paso_anios: 2
 
   - id: covenas
     nombre: Coveñas, Sucre
+    grupo: Ecosistemas
     tema: Erosión costera
     bbox: [-75.72, 9.38, -75.60, 9.48]
     sensor: landsat
@@ -23,6 +26,7 @@ regiones:
 
   - id: cienaga_grande
     nombre: Ciénaga Grande de Santa Marta
+    grupo: Ecosistemas
     tema: Manglares
     bbox: [-74.60, 10.65, -74.25, 11.05]
     sensor: landsat
@@ -33,6 +37,7 @@ regiones:
 
   - id: la_mojana
     nombre: La Mojana
+    grupo: Ecosistemas
     tema: Inundaciones
     bbox: [-75.10, 8.20, -74.40, 8.90]
     sensor: sentinel2
@@ -43,6 +48,7 @@ regiones:
 
   - id: alta_guajira
     nombre: Alta Guajira
+    grupo: Ecosistemas
     tema: Sequía y vegetación
     bbox: [-72.40, 11.60, -71.60, 12.30]
     sensor: landsat
@@ -53,6 +59,7 @@ regiones:
 
   - id: islas_rosario
     nombre: Islas del Rosario
+    grupo: Ecosistemas
     tema: Temperatura del mar
     bbox: [-75.85, 10.13, -75.70, 10.22]
     sensor: sentinel2
@@ -60,6 +67,100 @@ regiones:
     metrica: agua
     anio_inicio: 2017
     paso_anios: 1
+
+  # ---------- Capitales de la región Caribe ----------
+  # metrica "urbano": km² construidos (NDBI > 0, poca vegetación, sin agua)
+  # mar: false omite la temperatura del mar en ciudades sin costa
+  - id: barranquilla
+    nombre: Barranquilla
+    grupo: Capitales
+    tema: Crecimiento urbano
+    bbox: [-74.90, 10.88, -74.75, 11.07]
+    sensor: landsat
+    capa_video: rgb
+    metrica: urbano
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: cartagena
+    nombre: Cartagena
+    grupo: Capitales
+    tema: Crecimiento urbano
+    bbox: [-75.57, 10.33, -75.43, 10.47]
+    sensor: landsat
+    capa_video: rgb
+    metrica: urbano
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: santa_marta
+    nombre: Santa Marta
+    grupo: Capitales
+    tema: Crecimiento urbano
+    bbox: [-74.24, 11.17, -74.13, 11.27]
+    sensor: landsat
+    capa_video: rgb
+    metrica: urbano
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: riohacha
+    nombre: Riohacha
+    grupo: Capitales
+    tema: Crecimiento urbano
+    bbox: [-72.95, 11.50, -72.86, 11.57]
+    sensor: landsat
+    capa_video: rgb
+    metrica: urbano
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: valledupar
+    nombre: Valledupar
+    grupo: Capitales
+    tema: Crecimiento urbano
+    bbox: [-73.30, 10.42, -73.20, 10.52]
+    sensor: landsat
+    capa_video: rgb
+    metrica: urbano
+    anio_inicio: 1990
+    paso_anios: 2
+    mar: false
+
+  - id: monteria
+    nombre: Montería
+    grupo: Capitales
+    tema: Crecimiento urbano
+    bbox: [-75.92, 8.71, -75.83, 8.80]
+    sensor: landsat
+    capa_video: rgb
+    metrica: urbano
+    anio_inicio: 1990
+    paso_anios: 2
+    mar: false
+
+  - id: sincelejo
+    nombre: Sincelejo
+    grupo: Capitales
+    tema: Crecimiento urbano
+    bbox: [-75.43, 9.27, -75.36, 9.33]
+    sensor: landsat
+    capa_video: rgb
+    metrica: urbano
+    anio_inicio: 1990
+    paso_anios: 2
+    mar: false
+
+  - id: san_andres
+    nombre: San Andrés
+    grupo: Capitales
+    tema: Crecimiento urbano y costa
+    bbox: [-81.74, 12.48, -81.68, 12.60]
+    sensor: landsat
+    capa_video: rgb
+    metrica: urbano
+    anio_inicio: 1990
+    paso_anios: 2
 
 clima:
   anio_inicio: 1991
