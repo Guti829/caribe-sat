@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CaribeSat · El Caribe colombiano visto desde satélite</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.2/plotly.min.js"></script>
+<style>
+  :root {
+    --arena: #E7EAE3;     /* fondo: arena gris de playa */
+    --cienaga: #0F4C5C;   /* agua de ciénaga */
+    --mangle: #2E6B4A;
+    --sedimento: #B5782A; /* acento: sedimento / erosión */
+    --tinta: #1B2A2F;
+    --regla: #C9CFC6;
+    --panel: #F4F6F1;
+    --wide: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --arena: #10191C; --panel: #152226; --tinta: #E3EAE4; --regla: #2B3C40;
+      --cienaga: #5FB3C4; --mangle: #7DBF97; --sedimento: #E0A24E;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  body {
+    background: var(--arena); color: var(--tinta);
+    font-family: var(--wide); font-size: 17px; line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+  }
+  .app { display: grid; grid-template-columns: minmax(0, 62fr) minmax(360px, 38fr); height: 100%; }
+
+  /* ---- Mapa (héroe) ---- */
+  .mapa { position: relative; min-height: 55vh; }
+  #map { position: absolute; inset: 0; background: #cfd6cf; }
+  .reloj {
+    position: absolute; left: 24px; bottom: 24px; z-index: 500;
+    color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.55);
+    pointer-events: none;
+  }
+  .reloj .anio {
+    font-size: clamp(88px, 13vw, 190px); line-height: .82;
+    font-weight: 800; font-stretch: 125%; letter-spacing: -.02em;
+  }
+  .reloj .capa-txt { font-size: 18px; font-stretch: 100%; margin-top: 10px; }
+  .aviso-mapa {
+    position: absolute; top: 16px; left: 16px; right: 16px; z-index: 600;
+    background: var(--panel); border-left: 4px solid var(--sedimento);
+    padding: 12px 16px; font-size: 15px; display: none; max-width: 520px;
+  }
+  .cargando { position: absolute; top: 16px; right: 16px; z-index: 600; background: var(--panel);
+    padding: 6px 12px; font-size: 14px; display: none; }
+
+  /* ---- Panel ---- */
+  .panel { overflow-y: auto; padding: 32px 32px 48px; border-left: 1px solid var(--regla); }
+  h1 { font-size: 30px; font-weight: 800; font-stretch: 112%; margin: 0; line-height: 1.1; }
+  .intro { margin: 8px 0 28px; max-width: 42ch; }
+  h2 { font-size: 20px; font-weight: 700; font-stretch: 100%; margin: 36px 0 4px; }
+  .nota { font-size: 14px; opacity: .75; margin: 0 0 12px; }
+
+  .regiones { display: flex; flex-direction: column; border-top: 1px solid var(--regla); }
+  .regiones button {
+    all: unset; cursor: pointer; padding: 12px 0; border-bottom: 1px solid var(--regla);
+    display: flex; justify-content: space-between; gap: 12px; font-size: 17px;
+  }
+  .regiones button span:last-child { opacity: .7; font-size: 15px; text-align: right; }
+  .regiones button[aria-pressed="true"] { color: var(--cienaga); font-weight: 700; }
+  .regiones button[aria-pressed="true"] span:first-child::before { content: "● "; color: var(--sedimento); }
+
+  .capas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 20px; }
+  .capas button {
+    font: inherit; font-size: 15px; padding: 10px 12px; cursor: pointer;
+    background: transparent; color: var(--tinta); border: 1.5px solid var(--regla); border-radius: 3px; text-align: left;
+  }
+  .capas button[aria-pressed="true"] { border-color: var(--cienaga); background: var(--cienaga); color: var(--arena); }
+  .deslizador { margin-top: 18px; }
+  .deslizador label { font-size: 15px; display: flex; justify-content: space-between; }
+  input[type=range] { width: 100%; accent-color: var(--sedimento); }
+  button:focus-visible, input:focus-visible { outline: 3px solid var(--sedimento); outline-offset: 2px; }
+
+  .grafica { width: 100%; height: 240px; }
+  .vacio { font-size: 15px; padding: 14px 0; opacity: .8; border-top: 1px dashed var(--regla); }
+  .videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .videos iframe { width: 100%; aspect-ratio: 9/16; border: 0; border-radius: 6px; }
+  footer { margin-top: 40px; font-size: 13px; opacity: .7; }
+  footer a { color: inherit; }
+
+  @media (max-width: 860px) {
+    html, body { height: auto; }
+    .app { grid-template-columns: 1fr; height: auto; }
+    .mapa { height: 58vh; }
+    .panel { border-left: 0; padding: 24px 20px 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="mapa" aria-label="Mapa satelital">
+    <div id="map"></div>
+    <div class="reloj" aria-live="polite"><div class="anio" id="anioGrande">—</div><div class="capa-txt" id="capaTxt"></div></div>
+    <div class="aviso-mapa" id="avisoMapa" role="status"></div>
+    <div class="cargando" id="cargando">Procesando imágenes…</div>
+  </section>
+
+  <aside class="panel">
+    <h1>CaribeSat</h1>
+    <p class="intro">Cambios en la costa, el agua y la vegetación del Caribe colombiano, medidos con satélites públicos.</p>
+
+    <div class="regiones" id="regiones" role="group" aria-label="Regiones"></div>
+
+    <div class="capas" id="capas" role="group" aria-label="Capa del mapa">
+      <button data-capa="rgb">Color natural</button>
+      <button data-capa="ndvi">Vegetación</button>
+      <button data-capa="agua">Agua</button>
+      <button data-capa="inundacion">Inundación reciente</button>
+    </div>
+    <div class="deslizador">
+      <label for="anio"><span>Año del compuesto</span><span id="anioTxt"></span></label>
+      <input type="range" id="anio" min="1990" step="1">
+    </div>
+
+    <h2 id="metricaTitulo">Cambio año a año</h2>
+    <p class="nota" id="metricaNota"></p>
+    <div id="gMetrica" class="grafica"></div>
+
+    <h2>Lluvia frente a lo normal</h2>
+    <p class="nota">Diferencia mensual contra el promedio 1991–2020 (CHIRPS, mm).</p>
+    <div id="gLluvia" class="grafica"></div>
+
+    <h2>Temperatura del mar</h2>
+    <p class="nota">Promedio mensual en un radio de 25 km (NOAA OISST, °C).</p>
+    <div id="gSst" class="grafica"></div>
+
+    <h2>Videos</h2>
+    <div class="videos" id="videos"></div>
+
+    <footer id="pie">Datos: USGS/NASA Landsat, ESA Copernicus Sentinel, UCSB CHIRPS, NOAA OISST. Procesado en Google Earth Engine.</footer>
+  </aside>
+</div>
+
+<script>
+const CAPA_TXT = { rgb: "Color natural", ndvi: "Vigor de la vegetación", agua: "Superficie de agua", inundacion: "Agua detectada por radar, últimos 60 días" };
+const METRICA = { agua: ["Superficie de agua", "Kilómetros cuadrados de agua dentro del área, por año (MNDWI)."],
+                  ndvi: ["Vigor de la vegetación", "NDVI medio del área, por año. Más alto indica más vegetación sana."] };
+const hoy = new Date().getFullYear();
+const S = { regiones: [], region: null, capa: "rgb", anio: hoy, videos: [] };
+
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const map = L.map("map", { zoomControl: true, attributionControl: true });
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  { attribution: "© OpenStreetMap, © CARTO", maxZoom: 18 }).addTo(map);
+let satLayer = null, marco = null;
+
+function aviso(txt) { const el = document.getElementById("avisoMapa"); el.textContent = txt || ""; el.style.display = txt ? "block" : "none"; }
+
+async function cargarCapa() {
+  const r = S.region; if (!r) return;
+  document.getElementById("anioGrande").textContent = S.capa === "inundacion" ? "Hoy" : S.anio;
+  document.getElementById("capaTxt").textContent = `${CAPA_TXT[S.capa]} · ${r.nombre}`;
+  document.getElementById("anioTxt").textContent = S.anio;
+  document.getElementById("anio").disabled = S.capa === "inundacion";
+  const cargando = document.getElementById("cargando"); cargando.style.display = "block";
+  try {
+    const res = await fetch(`/api/capas/${r.id}?capa=${S.capa}&anio=${S.anio}`);
+    const j = await res.json();
+    if (!res.ok) throw new Error(j.detail || "No se pudo generar la capa.");
+    if (satLayer) map.removeLayer(satLayer);
+    satLayer = L.tileLayer(j.url, { opacity: 0.95, attribution: "Google Earth Engine" }).addTo(map);
+    aviso("");
+  } catch (e) {
+    aviso(`El mapa satelital no cargó: ${e.message} Las gráficas siguen disponibles.`);
+  } finally { cargando.style.display = "none"; }
+}
+
+function layout(yTitle) {
+  return { margin: { l: 44, r: 8, t: 8, b: 32 }, paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)",
+    font: { family: "Archivo, sans-serif", size: 12, color: css("--tinta") },
+    xaxis: { gridcolor: css("--regla") }, yaxis: { title: yTitle, gridcolor: css("--regla"), zerolinecolor: css("--tinta") },
+    showlegend: false };
+}
+function vacio(id, txt) { Plotly.purge(id); document.getElementById(id).innerHTML = `<p class="vacio">${txt}</p>`; }
+const cfgPlot = { displayModeBar: false, responsive: true };
+
+async function cargarSeries() {
+  const r = S.region;
+  const [t, n] = METRICA[r.metrica];
+  document.getElementById("metricaTitulo").textContent = t;
+  document.getElementById("metricaNota").textContent = n;
+  let d = null;
+  try { const res = await fetch(`/static/data/${r.id}.json?v=${Date.now()}`); if (res.ok) d = await res.json(); } catch {}
+  const falta = "Aún no hay datos para esta región. Se generan con el proceso semanal.";
+
+  const m = d?.metrica_anual?.filter(p => p.valor !== null);
+  if (m?.length) {
+    document.getElementById("gMetrica").innerHTML = "";
+    Plotly.react("gMetrica", [{ x: m.map(p => p.anio), y: m.map(p => p.valor), mode: "lines+markers",
+      line: { color: css("--cienaga"), width: 3 }, marker: { color: css("--sedimento"), size: 7 } }],
+      layout(r.metrica === "agua" ? "km²" : "NDVI"), cfgPlot);
+  } else vacio("gMetrica", falta);
+
+  const ll = d?.lluvia?.filter(p => p.anomalia !== null).slice(-120);
+  if (ll?.length) {
+    document.getElementById("gLluvia").innerHTML = "";
+    Plotly.react("gLluvia", [{ type: "bar", x: ll.map(p => p.fecha), y: ll.map(p => p.anomalia),
+      marker: { color: ll.map(p => p.anomalia >= 0 ? css("--cienaga") : css("--sedimento")) } }],
+      layout("mm"), cfgPlot);
+  } else vacio("gLluvia", falta);
+
+  const sst = d?.sst?.slice(-240);
+  if (sst?.length) {
+    document.getElementById("gSst").innerHTML = "";
+    Plotly.react("gSst", [{ x: sst.map(p => p.fecha), y: sst.map(p => p.valor), mode: "lines",
+      line: { color: css("--mangle"), width: 2 } }], layout("°C"), cfgPlot);
+  } else vacio("gSst", falta);
+
+  if (d?.actualizado) document.getElementById("pie").dataset.act = d.actualizado;
+}
+
+function pintarVideos() {
+  const el = document.getElementById("videos");
+  const propios = S.videos.filter(v => v.region === S.region.id);
+  const lista = (propios.length ? propios : S.videos).slice(0, 4);
+  el.innerHTML = lista.length ? lista.map(v =>
+    `<iframe src="https://www.youtube-nocookie.com/embed/${v.id}" title="${v.titulo.replace(/"/g, "&quot;")}" loading="lazy" allowfullscreen></iframe>`).join("")
+    : `<p class="vacio">Todavía no se han publicado videos. El primero sale con el proceso semanal.</p>`;
+}
+
+function elegirRegion(r) {
+  S.region = r;
+  document.querySelectorAll("#regiones button").forEach(b => b.setAttribute("aria-pressed", b.dataset.id === r.id));
+  const [x1, y1, x2, y2] = r.bbox;
+  const b = [[y1, x1], [y2, x2]];
+  if (marco) map.removeLayer(marco);
+  marco = L.rectangle(b, { color: css("--sedimento"), weight: 2, fill: false }).addTo(map);
+  map.fitBounds(b, { padding: [30, 30] });
+  const rango = document.getElementById("anio");
+  rango.min = r.sensor === "sentinel2" ? 2017 : 1990; rango.max = hoy;
+  S.anio = Math.min(Math.max(S.anio, +rango.min), hoy); rango.value = S.anio;
+  cargarCapa(); cargarSeries(); pintarVideos();
+}
+
+document.querySelectorAll("#capas button").forEach(b => b.addEventListener("click", () => {
+  S.capa = b.dataset.capa;
+  document.querySelectorAll("#capas button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  cargarCapa();
+}));
+document.querySelector('#capas button[data-capa="rgb"]').setAttribute("aria-pressed", "true");
+const rango = document.getElementById("anio");
+rango.addEventListener("input", () => { S.anio = +rango.value; document.getElementById("anioGrande").textContent = S.anio; document.getElementById("anioTxt").textContent = S.anio; });
+rango.addEventListener("change", cargarCapa);
+
+(async () => {
+  S.regiones = await (await fetch("/api/regiones")).json();
+  try { const v = await fetch("/static/data/videos.json"); if (v.ok) S.videos = await v.json(); } catch {}
+  document.getElementById("regiones").innerHTML = S.regiones.map(r =>
+    `<button data-id="${r.id}" aria-pressed="false"><span>${r.nombre}</span><span>${r.tema}</span></button>`).join("");
+  document.querySelectorAll("#regiones button").forEach(b =>
+    b.addEventListener("click", () => elegirRegion(S.regiones.find(r => r.id === b.dataset.id))));
+  elegirRegion(S.regiones[0]);
+})();
+</script>
+</body>
+</html>
