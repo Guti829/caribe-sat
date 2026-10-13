@@ -127,6 +127,11 @@
       <button data-capa="inundacion">Inundación reciente</button>
     </div>
     <div class="deslizador">
+      <label for="opacidad"><span>Opacidad de la capa satelital</span><span id="opTxt">90 %</span></label>
+      <input type="range" id="opacidad" min="0" max="100" value="90">
+    </div>
+    <p class="nota" id="resNota"></p>
+    <div class="deslizador">
       <label for="anio"><span>Año del compuesto</span><span id="anioTxt"></span></label>
       <input type="range" id="anio" min="1990" step="1">
     </div>
@@ -159,13 +164,13 @@ const hoy = new Date().getFullYear();
 const S = { regiones: [], region: null, capa: "rgb", anio: hoy - 1, videos: [] };
 
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const map = L.map("map", { zoomControl: true, attributionControl: true });
+const map = L.map("map", { zoomControl: true, attributionControl: true, maxZoom: 19 });
 // Mapa base: imagen satelital de Esri (sin llave) + capa de nombres por encima de los datos
 L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-  { attribution: "Base: Esri, Maxar, Earthstar Geographics", maxZoom: 18 }).addTo(map);
+  { attribution: "Base: Esri, Maxar, Earthstar Geographics", maxZoom: 19, maxNativeZoom: 18 }).addTo(map);
 map.createPane("nombres"); map.getPane("nombres").style.zIndex = 450; map.getPane("nombres").style.pointerEvents = "none";
 L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
-  { pane: "nombres", maxZoom: 18 }).addTo(map);
+  { pane: "nombres", maxZoom: 19, maxNativeZoom: 18 }).addTo(map);
 let satLayer = null, marco = null;
 
 function aviso(txt) { const el = document.getElementById("avisoMapa"); el.textContent = txt || ""; el.style.display = txt ? "block" : "none"; }
@@ -176,6 +181,8 @@ async function cargarCapa() {
   document.getElementById("capaTxt").textContent = `${CAPA_TXT[S.capa]} · ${r.nombre}`;
   document.getElementById("anioTxt").textContent = S.anio;
   document.getElementById("anio").disabled = S.capa === "inundacion";
+  const res = S.capa === "inundacion" ? "Sentinel-1, 10 m por píxel" : S.anio >= 2018 ? "Sentinel-2, 10 m por píxel" : "Landsat, 30 m por píxel";
+  document.getElementById("resNota").textContent = `Resolución: ${res}. Al acercarte mucho la capa se aclara sola para mostrar el mapa base de alta resolución; ajústala con la opacidad.`;
   const cargando = document.getElementById("cargando"); cargando.style.display = "block";
   try {
     const res = await fetch(`/api/capas/${r.id}?capa=${S.capa}&anio=${S.anio}`);
@@ -183,7 +190,8 @@ async function cargarCapa() {
     try { j = await res.json(); } catch { j = { detail: `el servidor respondió ${res.status}.` }; }
     if (!res.ok) throw new Error(j.detail || "No se pudo generar la capa.");
     if (satLayer) map.removeLayer(satLayer);
-    satLayer = L.tileLayer(j.url, { opacity: 0.95, attribution: "Google Earth Engine" }).addTo(map);
+    satLayer = L.tileLayer(j.url, { opacity: 1, maxZoom: 19, attribution: "Google Earth Engine" }).addTo(map);
+    ajustarOpacidad();
     aviso("");
   } catch (e) {
     aviso(`El mapa satelital no cargó: ${e.message} Las gráficas siguen disponibles.`);
@@ -268,6 +276,16 @@ document.querySelectorAll("#capas button").forEach(b => b.addEventListener("clic
   cargarCapa();
 }));
 document.querySelector('#capas button[data-capa="rgb"]').setAttribute("aria-pressed", "true");
+const opEl = document.getElementById("opacidad");
+// Más allá de la resolución del satélite, la capa se aclara para dejar ver el mapa base nítido
+function ajustarOpacidad() {
+  if (!satLayer) return;
+  const base = +opEl.value / 100, z = map.getZoom();
+  const lim = (S.anio >= 2018 || S.capa === "inundacion") ? 15 : 14;
+  satLayer.setOpacity(z > lim ? Math.min(base, Math.max(0.2, base - (z - lim) * 0.3)) : base);
+}
+opEl.addEventListener("input", () => { document.getElementById("opTxt").textContent = opEl.value + " %"; ajustarOpacidad(); });
+map.on("zoomend", ajustarOpacidad);
 const rango = document.getElementById("anio");
 rango.addEventListener("input", () => { S.anio = +rango.value; document.getElementById("anioGrande").textContent = S.anio; document.getElementById("anioTxt").textContent = S.anio; });
 rango.addEventListener("change", cargarCapa);

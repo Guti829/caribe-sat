@@ -17,13 +17,15 @@ def _landsat_mask(img):
 def _prep_l57(img):
     sr = (img.select(["SR_B1", "SR_B2", "SR_B3", "SR_B4", "SR_B5", "SR_B7"], BANDS)
           .multiply(0.0000275).add(-0.2))
-    return ee.Image(sr.updateMask(_landsat_mask(img)).copyProperties(img, ["system:time_start"]))
+    return ee.Image(sr.updateMask(_landsat_mask(img)).resample("bilinear")
+                    .copyProperties(img, ["system:time_start"]))
 
 
 def _prep_l89(img):
     sr = (img.select(["SR_B2", "SR_B3", "SR_B4", "SR_B5", "SR_B6", "SR_B7"], BANDS)
           .multiply(0.0000275).add(-0.2))
-    return ee.Image(sr.updateMask(_landsat_mask(img)).copyProperties(img, ["system:time_start"]))
+    return ee.Image(sr.updateMask(_landsat_mask(img)).resample("bilinear")
+                    .copyProperties(img, ["system:time_start"]))
 
 
 def landsat(geom, start, end):
@@ -41,7 +43,8 @@ def sentinel2(geom, start, end, cs_threshold=0.6):
 
     def prep(img):
         sr = (img.select(["B2", "B3", "B4", "B8", "B11", "B12"], BANDS).divide(10000)
-              .updateMask(img.select("cs").gte(cs_threshold)))
+              .updateMask(img.select("cs").gte(cs_threshold))
+              .resample("bilinear"))
         return ee.Image(sr.copyProperties(img, ["system:time_start"]))
 
     return (ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
