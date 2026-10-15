@@ -16,7 +16,7 @@
   "anio_inicio": 1990,
   "paso_anios": 2
  },
- "actualizado": "2026-10-15T05:36+00:00",
+ "actualizado": "2026-10-15T05:39+00:00",
  "lluvia": [
   {
    "fecha": "1991-01",
@@ -4294,6 +4294,56 @@
    "fecha": "2026-08",
    "valor": 29.78,
    "anomalia": 0.44
+  }
+ ],
+ "metrica_anual": [
+  {
+   "anio": 1990,
+   "valor": 22.749
+  },
+  {
+   "anio": 1994,
+   "valor": 24.372
+  },
+  {
+   "anio": 1996,
+   "valor": 7.746
+  },
+  {
+   "anio": 1998,
+   "valor": 21.894
+  },
+  {
+   "anio": 2000,
+   "valor": 13.71
+  },
+  {
+   "anio": 2002,
+   "valor": 19.999
+  },
+  {
+   "anio": 2004,
+   "valor": 21.7
+  },
+  {
+   "anio": 2006,
+   "valor": 20.803
+  },
+  {
+   "anio": 2008,
+   "valor": 24.319
+  },
+  {
+   "anio": 2010,
+   "valor": 22.199
+  },
+  {
+   "anio": 2012,
+   "valor": 20.38
+  },
+  {
+   "anio": 2014,
+   "valor": 29.441
   }
  ]
 }
