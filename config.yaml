@@ -168,8 +168,9 @@ clima:
 
 video:
   fps: 30
-  segundos_por_cuadro: 1.2
-  segundos_transicion: 0.4
+  segundos_gancho: 2.5
+  segundos_por_cuadro: 0.9
+  segundos_transicion: 0.3
   segundos_cierre: 3.5
   privacidad: public          # public | unlisted | private
   hashtags: ["#Shorts", "#Caribe", "#Colombia", "#CambioClimatico", "#Satelite"]

@@ -57,15 +57,15 @@ def cmd_video(cfg, region_id, upload=False):
     _write_json(path, data)
 
     mp4 = video.build_video(r, frames, OUT_DIR / r["id"] / f"{r['id']}_{year}.mp4", cfg["video"])
+    texto = video.texto_publicacion(r, frames)
+    mp4.with_suffix(".txt").write_text(texto, encoding="utf-8")   # texto listo para Instagram
     print(f"  Video: {mp4}")
     if not upload:
         return
     from .youtube import upload_short
     a, b = frames[0]["anio"], frames[-1]["anio"]
     title = f"{r['nombre']} desde el espacio: {a}–{b} | {r['tema']} #Shorts"
-    desc = (f"{r['tema']} en {r['nombre']} vista con satélites entre {a} y {b}.\n\n"
-            f"Fuentes: {video.SOURCES[r['sensor']]}, procesado en Google Earth Engine.\n"
-            + " ".join(cfg["video"]["hashtags"]))
+    desc = texto + "\n#Shorts"
     try:
         vid = upload_short(mp4, title, desc, ["satélite", "Caribe", "Colombia", r["tema"]],
                            cfg["video"].get("privacidad", "public"))
@@ -81,6 +81,11 @@ def cmd_video(cfg, region_id, upload=False):
     vids.insert(0, {"id": vid, "region": r["id"], "titulo": title,
                     "fecha": dt.date.today().isoformat()})
     _write_json(DATA_DIR / "videos.json", vids[:200])
+
+
+def cmd_reels(cfg, regiones: str):
+    for rid in [x.strip() for x in regiones.split(",") if x.strip()]:
+        cmd_video(cfg, rid, upload=False)
 
 
 def cmd_semanal(cfg, upload=False):
@@ -108,6 +113,8 @@ def main():
     v = sub.add_parser("video")
     v.add_argument("--region", required=True)
     v.add_argument("--upload", action="store_true")
+    rr = sub.add_parser("reels")
+    rr.add_argument("--regiones", required=True, help="ids separados por coma")
     w = sub.add_parser("semanal")
     w.add_argument("--upload", action="store_true")
     args = p.parse_args()
@@ -130,6 +137,8 @@ def _run(args, cfg):
         cmd_series(cfg, args.region)
     elif args.cmd == "video":
         cmd_video(cfg, args.region, args.upload)
+    elif args.cmd == "reels":
+        cmd_reels(cfg, args.regiones)
     else:
         cmd_semanal(cfg, args.upload)
 

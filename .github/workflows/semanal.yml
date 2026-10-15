@@ -7,6 +7,9 @@ on:
       region:
         description: "Región para video (vacío = rotación semanal)"
         required: false
+      reels:
+        description: "Solo generar reels para descargar, sin subir (ids separados por coma)"
+        required: false
 permissions:
   contents: write
 jobs:
@@ -28,7 +31,9 @@ jobs:
         run: |
           # sube a YouTube solo cuando ya estén configurados sus secretos
           UP=""; if [ -n "$YT_REFRESH_TOKEN" ]; then UP="--upload"; fi
-          if [ -n "${{ github.event.inputs.region }}" ]; then
+          if [ -n "${{ github.event.inputs.reels }}" ]; then
+            python -m caribesat.pipeline reels --regiones "${{ github.event.inputs.reels }}"
+          elif [ -n "${{ github.event.inputs.region }}" ]; then
             python -m caribesat.pipeline series
             python -m caribesat.pipeline video --region "${{ github.event.inputs.region }}" $UP
           else
@@ -36,7 +41,7 @@ jobs:
           fi
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: videos, path: out/**/*.mp4, retention-days: 14, if-no-files-found: ignore }
+        with: { name: reels, path: "out/**/*.mp4\nout/**/*.txt", retention-days: 30, if-no-files-found: ignore }
       - name: Publicar datos en la web
         if: always()
         run: |
