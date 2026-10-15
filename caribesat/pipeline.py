@@ -66,8 +66,16 @@ def cmd_video(cfg, region_id, upload=False):
     desc = (f"{r['tema']} en {r['nombre']} vista con satélites entre {a} y {b}.\n\n"
             f"Fuentes: {video.SOURCES[r['sensor']]}, procesado en Google Earth Engine.\n"
             + " ".join(cfg["video"]["hashtags"]))
-    vid = upload_short(mp4, title, desc, ["satélite", "Caribe", "Colombia", r["tema"]],
-                       cfg["video"].get("privacidad", "public"))
+    try:
+        vid = upload_short(mp4, title, desc, ["satélite", "Caribe", "Colombia", r["tema"]],
+                           cfg["video"].get("privacidad", "public"))
+    except Exception as e:  # el video queda en los artefactos del flujo aunque falle la subida
+        msg = str(e).replace("\n", " ")[:400]
+        if "invalid_grant" in msg:
+            msg = ("El permiso de YouTube venció o fue revocado (invalid_grant). Saca un refresh token "
+                   "nuevo en el OAuth Playground y actualiza el secreto YT_REFRESH_TOKEN. " + msg)
+        print(f"::error title=Subida a YouTube::{msg}")
+        raise SystemExit(1)
     print(f"  Publicado: https://youtube.com/shorts/{vid}")
     vids = _read_json(DATA_DIR / "videos.json", [])
     vids.insert(0, {"id": vid, "region": r["id"], "titulo": title,
