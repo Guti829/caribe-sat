@@ -49,7 +49,8 @@ def _frame(region, geom, year, scale, out_dir, width):
     url = imagery.visualized(comp, region["capa_video"]).getThumbURL(
         {"region": geom, "dimensions": width, "format": "png"})
     r = requests.get(url, timeout=180)
-    r.raise_for_status()
+    if not r.ok:
+        raise RuntimeError(f"Earth Engine {r.status_code}: {r.text[:300]}")
     png = out_dir / f"{year}.png"
     Image.open(io.BytesIO(r.content)).save(png)
     valor = _metric(comp, geom, region["metrica"], scale).getInfo()
