@@ -30,19 +30,29 @@ def build_frames(region: dict, out_dir: Path, end_year: int, width: int = 1080):
     out_dir.mkdir(parents=True, exist_ok=True)
     frames = []
     for year in range(region["anio_inicio"], end_year + 1, region.get("paso_anios", 1)):
-        comp, n_scenes = imagery.annual_composite(geom, year, region["sensor"])
-        n = n_scenes.getInfo()
-        if n == 0:
-            print(f"  {year}: sin escenas, se omite")
+        try:
+            frame = _frame(region, geom, year, scale, out_dir, width)
+        except Exception as e:  # un año con problemas no debe tumbar todo el video
+            print(f"::warning title=Año {year} omitido ({region['id']})::{type(e).__name__}: {str(e)[:300]}")
             continue
-        url = imagery.visualized(comp, region["capa_video"]).getThumbURL(
-            {"region": geom, "dimensions": width, "format": "png"})
-        r = requests.get(url, timeout=180)
-        r.raise_for_status()
-        png = out_dir / f"{year}.png"
-        Image.open(io.BytesIO(r.content)).save(png)
-        valor = _metric(comp, geom, region["metrica"], scale).getInfo()
-        frames.append({"anio": year, "png": str(png), "escenas": n,
-                       "valor": round(valor, 3) if valor is not None else None})
-        print(f"  {year}: {n} escenas, {region['metrica']}={frames[-1]['valor']}")
+        if frame:
+            frames.append(frame)
     return frames
+
+
+def _frame(region, geom, year, scale, out_dir, width):
+    comp, n_scenes = imagery.annual_composite(geom, year, region["sensor"])
+    n = n_scenes.getInfo()
+    if n == 0:
+        print(f"  {year}: sin escenas, se omite")
+        return None
+    url = imagery.visualized(comp, region["capa_video"]).getThumbURL(
+        {"region": geom, "dimensions": width, "format": "png"})
+    r = requests.get(url, timeout=180)
+    r.raise_for_status()
+    png = out_dir / f"{year}.png"
+    Image.open(io.BytesIO(r.content)).save(png)
+    valor = _metric(comp, geom, region["metrica"], scale).getInfo()
+    f = {"anio": year, "png": str(png), "escenas": n, "valor": round(valor, 3) if valor is not None else None}
+    print(f"  {year}: {n} escenas, {region['metrica']}={f['valor']}")
+    return f

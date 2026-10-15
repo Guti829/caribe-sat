@@ -103,6 +103,18 @@ def main():
     args = p.parse_args()
 
     cfg = load_config()
+    try:
+        _run(args, cfg)
+    except SystemExit:
+        raise
+    except Exception as e:
+        import traceback
+        donde = traceback.extract_tb(e.__traceback__)[-1]
+        print(f"::error title=Fallo en {args.cmd}::{type(e).__name__} en {donde.filename.split('/')[-1]}:{donde.lineno}: {str(e)[:400]}")
+        raise
+
+
+def _run(args, cfg):
     init_ee()
     if args.cmd == "series":
         cmd_series(cfg, args.region)
