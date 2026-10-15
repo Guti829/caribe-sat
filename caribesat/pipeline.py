@@ -80,14 +80,24 @@ def cmd_video(cfg, region_id, upload=False):
     vids = _read_json(DATA_DIR / "videos.json", [])
     vids.insert(0, {"id": vid, "region": r["id"], "titulo": title,
                     "fecha": dt.date.today().isoformat()})
-    _write_json(DATA_DIR / "videos.json", vids[:30])
+    _write_json(DATA_DIR / "videos.json", vids[:200])
 
 
 def cmd_semanal(cfg, upload=False):
     cmd_series(cfg)
-    regiones = cfg["regiones"]
-    week = dt.date.today().isocalendar().week
-    cmd_video(cfg, regiones[week % len(regiones)]["id"], upload)   # rota una región por semana
+    cmd_video(cfg, siguiente_region(cfg), upload)
+
+
+def siguiente_region(cfg) -> str:
+    """Elige la región que lleva más tiempo sin reel (las que nunca han tenido van primero),
+    así cada semana sale un lugar distinto y no se repite hasta recorrerlas todas."""
+    ultimo = {}
+    for v in _read_json(DATA_DIR / "videos.json", []):
+        ultimo[v["region"]] = max(ultimo.get(v["region"], ""), v.get("fecha", ""))
+    orden = {r["id"]: i for i, r in enumerate(cfg["regiones"])}
+    elegida = min(cfg["regiones"], key=lambda r: (ultimo.get(r["id"], ""), orden[r["id"]]))
+    print(f"Región de la semana: {elegida['nombre']} (último reel: {ultimo.get(elegida['id'], 'nunca')})")
+    return elegida["id"]
 
 
 def main():
