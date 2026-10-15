@@ -61,7 +61,7 @@ def capa(region_id: str,
     else:
         # Sentinel-2 da más detalle desde 2019; antes se usa Landsat
         sensor = "sentinel2" if anio >= 2018 else "landsat"
-        comp, _ = imagery.annual_composite(geom, anio, sensor)
+        comp, _ = imagery.annual_composite(geom, anio, sensor, smooth=True)
         img = imagery.layer_image(comp, capa)
         vis = imagery.VIS[capa]
     try:

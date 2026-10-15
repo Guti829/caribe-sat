@@ -17,20 +17,24 @@ def _landsat_mask(img):
 def _prep_l57(img):
     sr = (img.select(["SR_B1", "SR_B2", "SR_B3", "SR_B4", "SR_B5", "SR_B7"], BANDS)
           .multiply(0.0000275).add(-0.2))
-    return ee.Image(sr.updateMask(_landsat_mask(img)).resample("bilinear")
-                    .copyProperties(img, ["system:time_start"]))
+    return ee.Image(sr.updateMask(_landsat_mask(img)).copyProperties(img, ["system:time_start"]))
 
 
 def _prep_l89(img):
     sr = (img.select(["SR_B2", "SR_B3", "SR_B4", "SR_B5", "SR_B6", "SR_B7"], BANDS)
           .multiply(0.0000275).add(-0.2))
-    return ee.Image(sr.updateMask(_landsat_mask(img)).resample("bilinear")
-                    .copyProperties(img, ["system:time_start"]))
+    return ee.Image(sr.updateMask(_landsat_mask(img)).copyProperties(img, ["system:time_start"]))
 
 
-def landsat(geom, start, end):
+def _suave(col, smooth):
+    # Interpolación bilineal por escena: solo para el mapa web (al acercar no se ven bloques).
+    # Es costosa, así que los cuadros del video no la usan.
+    return col.map(lambda i: i.resample("bilinear")) if smooth else col
+
+
+def landsat(geom, start, end, smooth=False):
     def col(cid, prep):
-        return ee.ImageCollection(cid).filterBounds(geom).filterDate(start, end).map(prep)
+        return _suave(ee.ImageCollection(cid).filterBounds(geom).filterDate(start, end).map(prep), smooth)
     return (col("LANDSAT/LT05/C02/T1_L2", _prep_l57)
             .merge(col("LANDSAT/LE07/C02/T1_L2", _prep_l57))
             .merge(col("LANDSAT/LC08/C02/T1_L2", _prep_l89))
@@ -38,24 +42,24 @@ def landsat(geom, start, end):
 
 
 # ---------- Sentinel-2 con Cloud Score+ ----------
-def sentinel2(geom, start, end, cs_threshold=0.6):
+def sentinel2(geom, start, end, cs_threshold=0.6, smooth=False):
     cs = ee.ImageCollection("GOOGLE/CLOUD_SCORE_PLUS/V1/S2_HARMONIZED")
 
     def prep(img):
         sr = (img.select(["B2", "B3", "B4", "B8", "B11", "B12"], BANDS).divide(10000)
-              .updateMask(img.select("cs").gte(cs_threshold))
-              .resample("bilinear"))
+              .updateMask(img.select("cs").gte(cs_threshold)))
         return ee.Image(sr.copyProperties(img, ["system:time_start"]))
 
-    return (ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-            .filterBounds(geom).filterDate(start, end)
-            .linkCollection(cs, ["cs"])
-            .map(prep))
+    col = (ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+           .filterBounds(geom).filterDate(start, end)
+           .linkCollection(cs, ["cs"])
+           .map(prep))
+    return _suave(col, smooth)
 
 
-def annual_composite(geom, year: int, sensor: str):
+def annual_composite(geom, year: int, sensor: str, smooth: bool = False):
     start, end = f"{year}-01-01", f"{year + 1}-01-01"
-    col = sentinel2(geom, start, end) if sensor == "sentinel2" else landsat(geom, start, end)
+    col = sentinel2(geom, start, end, smooth=smooth) if sensor == "sentinel2" else landsat(geom, start, end, smooth=smooth)
     return col.median().clip(geom), col.size()
 
 
