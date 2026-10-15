@@ -11,162 +11,243 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
+  /* Interfaz oscura translúcida: se lee bien sobre cualquier imagen satelital */
   :root {
-    --arena: #E7EAE3;     /* fondo: arena gris de playa */
-    --cienaga: #0F4C5C;   /* agua de ciénaga */
-    --mangle: #2E6B4A;
-    --sedimento: #B5782A; /* acento: sedimento / erosión */
-    --tinta: #1B2A2F;
-    --regla: #C9CFC6;
-    --panel: #F4F6F1;
+    --vidrio: rgba(12, 30, 36, .82);
+    --vidrio-fuerte: rgba(10, 24, 29, .94);
+    --tinta: #E6EEE8;
+    --suave: #9FB5B3;
+    --regla: rgba(230, 238, 232, .14);
+    --cienaga: #5FB3C4;
+    --mangle: #7DBF97;
+    --sedimento: #E0A24E;
     --wide: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --arena: #10191C; --panel: #152226; --tinta: #E3EAE4; --regla: #2B3C40;
-      --cienaga: #5FB3C4; --mangle: #7DBF97; --sedimento: #E0A24E;
-    }
+    --sombra: 0 6px 24px rgba(0, 0, 0, .35);
+    --menu-w: 380px;
   }
   * { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; }
-  :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
-  body {
-    background: var(--arena); color: var(--tinta);
-    font-family: var(--wide); font-size: 17px; line-height: 1.5;
-    font-variant-numeric: tabular-nums;
-  }
-  .app { display: grid; grid-template-columns: minmax(0, 62fr) minmax(360px, 38fr); height: 100%; }
+  html, body { height: 100%; margin: 0; overflow: hidden; }
+  body { background: #0c2630; color: var(--tinta); font-family: var(--wide); font-size: 16px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+  button { font: inherit; color: inherit; }
+  button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid var(--sedimento); outline-offset: 2px; }
 
-  /* ---- Mapa (héroe) ---- */
-  .mapa { position: relative; min-height: 55vh; }
-  #map { position: absolute; inset: 0; background: #0c2630; }
-  .reloj {
-    position: absolute; left: 24px; bottom: 24px; z-index: 500;
-    color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.55);
-    pointer-events: none;
-  }
-  .reloj .anio {
-    font-size: clamp(88px, 13vw, 190px); line-height: .82;
-    font-weight: 800; font-stretch: 125%; letter-spacing: -.02em;
-  }
-  .reloj .capa-txt { font-size: 18px; font-stretch: 100%; margin-top: 10px; }
-  .aviso-mapa {
-    position: absolute; top: 16px; left: 16px; right: 16px; z-index: 600;
-    background: var(--panel); border-left: 4px solid var(--sedimento);
-    padding: 12px 16px; font-size: 15px; display: none; max-width: 520px;
-  }
-  .cortina { position: absolute; top: 0; bottom: 0; z-index: 650; width: 0; display: none; }
+  #map { position: fixed; inset: 0; background: #0c2630; }
+  .flota { position: fixed; z-index: 800; background: var(--vidrio); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--regla); border-radius: 12px; box-shadow: var(--sombra); }
+
+  /* ---- Barra superior ---- */
+  .barra { transition: opacity .2s; top: calc(14px + env(safe-area-inset-top, 0px)); left: 14px; display: flex; align-items: center; gap: 4px; padding: 6px 14px 6px 6px; max-width: calc(100vw - 28px); }
+  .ico { width: 44px; height: 44px; border: 0; border-radius: 9px; background: transparent; cursor: pointer; display: grid; place-items: center; flex: none; }
+  .ico:hover { background: rgba(255,255,255,.08); }
+  .ico svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+  .marca { font-weight: 800; font-stretch: 112%; font-size: 18px; letter-spacing: -.01em; margin-right: 8px; white-space: nowrap; }
+  .lugar { border: 0; background: transparent; cursor: pointer; text-align: left; padding: 4px 8px; border-radius: 8px; border-left: 1px solid var(--regla); min-width: 0; }
+  .lugar:hover { background: rgba(255,255,255,.06); }
+  .lugar b { display: block; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lugar small { display: block; color: var(--suave); font-size: 13px; line-height: 1.2; white-space: nowrap; }
+
+  /* ---- Capas (chips) ---- */
+  .capas { top: calc(14px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); display: flex; gap: 4px; padding: 5px; }
+  .capas button { border: 0; background: transparent; cursor: pointer; padding: 9px 13px; border-radius: 8px; font-size: 14px; white-space: nowrap; color: var(--tinta); }
+  .capas button:hover { background: rgba(255,255,255,.08); }
+  .capas button[aria-pressed="true"] { background: var(--tinta); color: #0c2630; font-weight: 700; }
+
+  /* ---- Año grande ---- */
+  .reloj { position: fixed; z-index: 500; left: 22px; bottom: 112px; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.6); pointer-events: none; }
+  .reloj .anio { font-size: clamp(64px, 10vw, 150px); line-height: .82; font-weight: 800; font-stretch: 125%; letter-spacing: -.02em; }
+  .reloj .capa-txt { font-size: 16px; margin-top: 8px; }
+
+  /* ---- Línea de tiempo ---- */
+  .tiempo { bottom: calc(26px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); width: min(720px, calc(100vw - 28px));
+    display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 10px; padding: 8px 12px 8px 8px; }
+  .play { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--sedimento); color: #0c1e24; cursor: pointer; display: grid; place-items: center; }
+  .play svg { width: 18px; height: 18px; fill: currentColor; }
+  .tiempo .eje { display: grid; gap: 0; }
+  .tiempo .eje span i { font-style: normal; }
+  .tiempo .eje span { display: flex; justify-content: space-between; font-size: 12px; color: var(--suave); }
+  .tiempo output { font-weight: 800; font-size: 20px; min-width: 52px; text-align: right; }
+  .comp { border: 1px solid var(--regla); background: transparent; border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 13px; white-space: nowrap; }
+  .comp[aria-pressed="true"] { background: var(--sedimento); border-color: var(--sedimento); color: #0c1e24; font-weight: 700; }
+  input[type=range] { width: 100%; accent-color: var(--sedimento); margin: 4px 0; }
+  input[type=range]:disabled { opacity: .4; }
+
+  /* ---- Avisos ---- */
+  .aviso-mapa { position: fixed; z-index: 850; top: calc(80px + env(safe-area-inset-top, 0px)); left: 14px; max-width: 420px; display: none;
+    background: var(--vidrio-fuerte); border: 1px solid var(--regla); border-left: 4px solid var(--sedimento); border-radius: 10px; padding: 12px 16px; font-size: 14px; box-shadow: var(--sombra); }
+  .cargando { position: fixed; z-index: 850; top: calc(80px + env(safe-area-inset-top, 0px)); right: 14px; display: none; align-items: center; gap: 8px;
+    background: var(--vidrio-fuerte); border-radius: 99px; padding: 7px 14px; font-size: 13px; box-shadow: var(--sombra); }
+  .cargando::before { content: ""; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--sedimento); border-right-color: transparent; animation: gira .8s linear infinite; }
+  @keyframes gira { to { transform: rotate(360deg); } }
+
+  /* ---- Cortina de comparación ---- */
+  .cortina { position: fixed; top: 0; bottom: 0; z-index: 650; width: 0; display: none; }
   .cortina.on { display: block; }
   .cortina::before { content: ""; position: absolute; top: 0; bottom: 0; left: -1.5px; width: 3px; background: #fff; box-shadow: 0 0 8px rgba(0,0,0,.5); }
-  .cortina button { position: absolute; top: 50%; left: 0; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%;
-    border: 3px solid #fff; background: var(--sedimento); color: #fff; font: 700 18px/1 var(--wide); cursor: ew-resize; touch-action: none; }
-  .cortina .lado { position: absolute; top: calc(50% + 32px); white-space: nowrap; font-size: 13px; color: #fff; background: rgba(12,38,48,.8); padding: 3px 8px; border-radius: 3px; }
+  .cortina button { position: absolute; top: 50%; left: 0; transform: translate(-50%, -50%); width: 46px; height: 46px; border-radius: 50%;
+    border: 3px solid #fff; background: var(--sedimento); color: #0c1e24; font: 700 18px/1 var(--wide); cursor: ew-resize; touch-action: none; }
+  .cortina .lado { position: absolute; top: calc(50% + 34px); white-space: nowrap; font-size: 13px; color: #fff; background: var(--vidrio-fuerte); padding: 3px 8px; border-radius: 5px; }
   .cortina .izq { right: 10px; } .cortina .der { left: 10px; }
-  .cargando { position: absolute; top: 16px; right: 16px; z-index: 600; background: var(--panel);
-    padding: 6px 12px; font-size: 14px; display: none; }
 
-  /* ---- Panel ---- */
-  .panel { overflow-y: auto; padding: 32px 32px 48px; border-left: 1px solid var(--regla); }
-  h1 { font-size: 30px; font-weight: 800; font-stretch: 112%; margin: 0; line-height: 1.1; }
-  .intro { margin: 8px 0 28px; max-width: 42ch; }
-  h2 { font-size: 20px; font-weight: 700; font-stretch: 100%; margin: 36px 0 4px; }
-  .nota { font-size: 14px; opacity: .75; margin: 0 0 12px; }
+  /* ---- Menú desplegable ---- */
+  .velo { position: fixed; inset: 0; z-index: 890; background: rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .25s; }
+  .menu { position: fixed; z-index: 900; top: 0; bottom: 0; left: 0; width: min(var(--menu-w), 100vw); background: var(--vidrio-fuerte);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-right: 1px solid var(--regla); box-shadow: var(--sombra);
+    transform: translateX(-102%); transition: transform .3s cubic-bezier(.2,.8,.2,1); display: flex; flex-direction: column; visibility: hidden; }
+  body.menu-abierto .menu { transform: none; visibility: visible; }
+  body.menu-abierto .velo { opacity: 1; pointer-events: auto; }
+  .menu header { display: flex; align-items: center; justify-content: space-between; padding: calc(14px + env(safe-area-inset-top, 0px)) 12px 10px 22px; border-bottom: 1px solid var(--regla); }
+  .menu header h1 { margin: 0; font-size: 24px; font-weight: 800; font-stretch: 112%; }
+  .menu header p { margin: 0; color: var(--suave); font-size: 14px; line-height: 1.35; max-width: 30ch; }
+  .menu .cuerpo { overflow-y: auto; padding: 6px 22px calc(28px + env(safe-area-inset-bottom, 0px)); overscroll-behavior: contain; }
+  details { border-bottom: 1px solid var(--regla); }
+  summary { list-style: none; cursor: pointer; padding: 16px 0; font-weight: 700; font-size: 17px; display: flex; justify-content: space-between; align-items: center; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: ""; width: 9px; height: 9px; border-right: 2px solid var(--suave); border-bottom: 2px solid var(--suave); transform: rotate(45deg); transition: transform .2s; margin-right: 4px; }
+  details[open] > summary::after { transform: rotate(-135deg); }
+  details > .contenido { padding-bottom: 18px; }
 
-  .regiones { display: flex; flex-direction: column; border-top: 1px solid var(--regla); }
-  .regiones button {
-    all: unset; cursor: pointer; padding: 12px 0; border-bottom: 1px solid var(--regla);
-    display: flex; justify-content: space-between; gap: 12px; font-size: 17px;
-  }
-  .regiones button span:last-child { opacity: .7; font-size: 15px; text-align: right; }
-  .regiones button[aria-pressed="true"] { color: var(--cienaga); font-weight: 700; }
-  .regiones button[aria-pressed="true"] span:first-child::before { content: "● "; color: var(--sedimento); }
+  .grupo { font-size: 13px; color: var(--suave); margin: 8px 0 2px; }
+  .regiones { display: flex; flex-direction: column; }
+  .regiones button { border: 0; background: transparent; cursor: pointer; padding: 10px 10px; margin: 0 -10px; border-radius: 8px;
+    display: flex; justify-content: space-between; gap: 12px; text-align: left; }
+  .regiones button:hover { background: rgba(255,255,255,.06); }
+  .regiones button span:last-child { color: var(--suave); font-size: 14px; text-align: right; }
+  .regiones button[aria-pressed="true"] { background: rgba(224,162,78,.16); }
+  .regiones button[aria-pressed="true"] span:first-child { font-weight: 700; color: var(--sedimento); }
 
-  .capas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 20px; }
-  .capas button {
-    font: inherit; font-size: 15px; padding: 10px 12px; cursor: pointer;
-    background: transparent; color: var(--tinta); border: 1.5px solid var(--regla); border-radius: 3px; text-align: left;
-  }
-  .capas button[aria-pressed="true"] { border-color: var(--cienaga); background: var(--cienaga); color: var(--arena); }
-  .deslizador { margin-top: 18px; }
-  .btn-comparar { font: inherit; font-size: 15px; padding: 10px 12px; cursor: pointer; width: 100%; margin: 4px 0 6px;
-    background: transparent; color: var(--tinta); border: 1.5px solid var(--regla); border-radius: 3px; text-align: left; }
-  .btn-comparar[aria-pressed="true"] { border-color: var(--sedimento); background: var(--sedimento); color: #fff; }
-  .deslizador label { font-size: 15px; display: flex; justify-content: space-between; }
-  input[type=range] { width: 100%; accent-color: var(--sedimento); }
-  button:focus-visible, input:focus-visible { outline: 3px solid var(--sedimento); outline-offset: 2px; }
-
-  .grafica { width: 100%; min-height: 60px; }
+  .campo label { font-size: 14px; display: flex; justify-content: space-between; }
+  .nota { font-size: 13px; color: var(--suave); margin: 4px 0 12px; }
+  .btn-ancho { width: 100%; text-align: left; border: 1px solid var(--regla); background: transparent; border-radius: 8px; padding: 10px 12px; cursor: pointer; font-size: 15px; }
+  .btn-ancho[aria-pressed="true"] { background: var(--sedimento); border-color: var(--sedimento); color: #0c1e24; font-weight: 700; }
+  h3 { font-size: 15px; margin: 14px 0 0; }
   svg.g { width: 100%; height: auto; display: block; overflow: visible; }
-  svg.g text { fill: currentColor; opacity: .65; font-size: 11px; font-family: inherit; }
-  .grupo { font-size: 14px; opacity: .7; margin: 18px 0 2px; }
-  .vacio { font-size: 15px; padding: 14px 0; opacity: .8; border-top: 1px dashed var(--regla); }
-  .videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-  .videos iframe { width: 100%; aspect-ratio: 9/16; border: 0; border-radius: 6px; }
-  footer { margin-top: 40px; font-size: 13px; opacity: .7; }
-  footer a { color: inherit; }
+  svg.g text { fill: var(--suave); font-size: 11px; font-family: inherit; }
+  .vacio { font-size: 14px; padding: 12px 0; color: var(--suave); border-top: 1px dashed var(--regla); margin: 0; }
+  .videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .videos iframe { width: 100%; aspect-ratio: 9/16; border: 0; border-radius: 8px; }
+  .acerca { font-size: 14px; color: var(--suave); }
+  .acerca a { color: var(--tinta); }
 
+  /* Controles de Leaflet al estilo de la interfaz */
+  .leaflet-bottom.leaflet-right { bottom: 96px; }
+  .leaflet-control-zoom { border: 1px solid var(--regla) !important; border-radius: 10px !important; overflow: hidden; box-shadow: var(--sombra) !important; }
+  .leaflet-control-zoom a { background: var(--vidrio) !important; color: var(--tinta) !important; border-color: var(--regla) !important; width: 40px !important; height: 40px !important; line-height: 40px !important; }
+  .leaflet-control-attribution { background: rgba(10,24,29,.7) !important; color: var(--suave) !important; font-size: 10px; }
+  .leaflet-control-attribution a { color: var(--tinta) !important; }
+  .leaflet-container .leaflet-bottom.leaflet-right .leaflet-control-attribution { position: fixed; right: 0; bottom: 0; margin: 0; }
+
+  /* ---- Celular ---- */
   @media (max-width: 860px) {
-    html, body { height: auto; }
-    .app { grid-template-columns: 1fr; height: auto; }
-    .mapa { height: 58vh; }
-    .panel { border-left: 0; padding: 24px 20px 40px; }
+    .capas { top: calc(78px + env(safe-area-inset-top, 0px)); left: 14px; right: 14px; transform: none; overflow-x: auto; scrollbar-width: none; }
+    .capas::-webkit-scrollbar { display: none; }
+    .aviso-mapa, .cargando { top: calc(138px + env(safe-area-inset-top, 0px)); }
+    .aviso-mapa { right: 14px; }
+    .reloj { left: 16px; bottom: 150px; }
+    .reloj .capa-txt { font-size: 14px; }
+    .tiempo { grid-template-columns: auto 1fr auto; row-gap: 6px; padding: 8px 10px; }
+    .tiempo .comp { grid-column: 1 / -1; }
+    .leaflet-bottom.leaflet-right { bottom: 150px; }
+    /* el menú sube desde abajo como una hoja */
+    .menu { top: auto; width: 100vw; height: 86vh; border-right: 0; border-top: 1px solid var(--regla); border-radius: 18px 18px 0 0; transform: translateY(102%); }
+    .menu header { padding-top: 12px; }
+    .menu header::before { content: ""; position: absolute; top: 6px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 4px; background: var(--regla); }
   }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (min-width: 861px) {
+    /* en escritorio el menú empuja los controles para que no los tape */
+    body.menu-abierto .velo { display: none; }
+    body.menu-abierto .barra { opacity: 0; pointer-events: none; }
+    .capas, .tiempo, .reloj { transition: left .3s cubic-bezier(.2,.8,.2,1), width .3s; }
+    body.menu-abierto .capas { left: calc(50% + var(--menu-w) / 2); }
+    body.menu-abierto .tiempo { left: calc(50% + var(--menu-w) / 2); width: min(720px, calc(100vw - var(--menu-w) - 28px)); }
+    body.menu-abierto .reloj { left: calc(var(--menu-w) + 22px); }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
-<div class="app">
-  <section class="mapa" aria-label="Mapa satelital">
-    <div id="map"></div>
-    <div class="reloj" aria-live="polite"><div class="anio" id="anioGrande">—</div><div class="capa-txt" id="capaTxt"></div></div>
-    <div class="aviso-mapa" id="avisoMapa" role="status"></div>
-    <div class="cortina" id="cortina"><span class="lado izq" id="ladoIzq">Satélite</span><span class="lado der">Mapa base nítido</span>
-      <button id="cortinaBtn" aria-label="Arrastra para comparar">⇔</button></div>
-    <div class="cargando" id="cargando">Procesando imágenes…</div>
-  </section>
+<div id="map" aria-label="Mapa satelital"></div>
 
-  <aside class="panel">
-    <h1>CaribeSat</h1>
-    <p class="intro">Cambios en la costa, el agua y la vegetación del Caribe colombiano, medidos con satélites públicos.</p>
-
-    <div id="regiones" role="group" aria-label="Regiones"></div>
-
-    <div class="capas" id="capas" role="group" aria-label="Capa del mapa">
-      <button data-capa="rgb">Color natural</button>
-      <button data-capa="ndvi">Vegetación</button>
-      <button data-capa="agua">Agua</button>
-      <button data-capa="urbano">Zona urbana</button>
-      <button data-capa="inundacion">Inundación reciente</button>
-    </div>
-    <div class="deslizador">
-      <label for="opacidad"><span>Opacidad de la capa satelital</span><span id="opTxt">90 %</span></label>
-      <input type="range" id="opacidad" min="0" max="100" value="90">
-    </div>
-    <p class="nota" id="resNota"></p>
-    <button class="btn-comparar" id="comparar" aria-pressed="false">Comparar con mapa base nítido</button>
-    <div class="deslizador">
-      <label for="anio"><span>Año del compuesto</span><span id="anioTxt"></span></label>
-      <input type="range" id="anio" min="1990" step="1">
-    </div>
-
-    <h2 id="metricaTitulo">Cambio año a año</h2>
-    <p class="nota" id="metricaNota"></p>
-    <div id="gMetrica" class="grafica"></div>
-
-    <h2>Lluvia frente a lo normal</h2>
-    <p class="nota">Diferencia mensual contra el promedio 1991–2020 (CHIRPS, mm).</p>
-    <div id="gLluvia" class="grafica"></div>
-
-    <h2>Temperatura del mar</h2>
-    <p class="nota">Promedio mensual en un radio de 25 km (NOAA OISST, °C).</p>
-    <div id="gSst" class="grafica"></div>
-
-    <h2>Videos</h2>
-    <div class="videos" id="videos"></div>
-
-    <footer id="pie">Datos: USGS/NASA Landsat, ESA Copernicus Sentinel, UCSB CHIRPS, NOAA OISST. Procesado en Google Earth Engine.</footer>
-  </aside>
+<div class="flota barra">
+  <button class="ico" id="abrirMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <span class="marca">CaribeSat</span>
+  <button class="lugar" id="lugarBtn" aria-label="Cambiar de región"><b id="lugarNombre">Cargando…</b><small id="lugarTema"></small></button>
 </div>
+
+<div class="flota capas" id="capas" role="group" aria-label="Capa del mapa">
+  <button data-capa="rgb">Color natural</button>
+  <button data-capa="ndvi">Vegetación</button>
+  <button data-capa="agua">Agua</button>
+  <button data-capa="urbano">Zona urbana</button>
+  <button data-capa="inundacion">Inundación</button>
+</div>
+
+<div class="reloj" aria-live="polite"><div class="anio" id="anioGrande">—</div><div class="capa-txt" id="capaTxt"></div></div>
+
+<div class="flota tiempo">
+  <button class="play" id="play" aria-label="Reproducir años"><svg viewBox="0 0 24 24" id="playIco"><path d="M7 4l13 8-13 8z"/></svg></button>
+  <div class="eje">
+    <input type="range" id="anio" min="1990" step="1" aria-label="Año del compuesto">
+    <span><i id="anioMin">1990</i><i id="anioMax"></i></span>
+  </div>
+  <output id="anioTxt" for="anio"></output>
+  <button class="comp" id="comparar" aria-pressed="false">Comparar ⇔</button>
+</div>
+
+<div class="aviso-mapa" id="avisoMapa" role="status"></div>
+<div class="cargando" id="cargando">Procesando imágenes</div>
+<div class="cortina" id="cortina"><span class="lado izq" id="ladoIzq">Satélite</span><span class="lado der">Mapa base nítido</span>
+  <button id="cortinaBtn" aria-label="Arrastra para comparar">⇔</button></div>
+
+<div class="velo" id="velo"></div>
+<aside class="menu" id="menu" aria-label="Menú de opciones">
+  <header>
+    <div><h1>CaribeSat</h1><p>Costa, agua y vegetación del Caribe colombiano, medidas con satélites públicos.</p></div>
+    <button class="ico" id="cerrarMenu" aria-label="Cerrar menú"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </header>
+  <div class="cuerpo">
+    <details open id="secRegiones">
+      <summary>Regiones</summary>
+      <div class="contenido" id="regiones" role="group" aria-label="Regiones"></div>
+    </details>
+    <details>
+      <summary>Visualización</summary>
+      <div class="contenido">
+        <div class="campo">
+          <label for="opacidad"><span>Opacidad de la capa satelital</span><span id="opTxt">90 %</span></label>
+          <input type="range" id="opacidad" min="0" max="100" value="90">
+        </div>
+        <p class="nota" id="resNota"></p>
+        <button class="btn-ancho" id="comparar2" aria-pressed="false">Comparar con mapa base nítido</button>
+      </div>
+    </details>
+    <details open>
+      <summary id="metricaTitulo">Cambio año a año</summary>
+      <div class="contenido">
+        <p class="nota" id="metricaNota"></p>
+        <div id="gMetrica"></div>
+        <h3>Lluvia frente a lo normal</h3>
+        <p class="nota">Diferencia mensual contra el promedio 1991–2020 (CHIRPS, mm).</p>
+        <div id="gLluvia"></div>
+        <h3>Temperatura del mar</h3>
+        <p class="nota">Promedio mensual en un radio de 25 km (NOAA OISST, °C).</p>
+        <div id="gSst"></div>
+      </div>
+    </details>
+    <details>
+      <summary>Videos</summary>
+      <div class="contenido"><div class="videos" id="videos"></div></div>
+    </details>
+    <details>
+      <summary>Acerca de</summary>
+      <div class="contenido acerca" id="pie">
+        <p>Mapas, cifras y videos estimados automáticamente con datos satelitales públicos. Son informativos y no reemplazan estudios técnicos.</p>
+        <p>Datos: USGS/NASA Landsat, ESA Copernicus Sentinel, UCSB CHIRPS, NOAA OISST. Procesado en Google Earth Engine.</p>
+        <p><a href="/privacidad">Privacidad</a> · <a href="/condiciones">Condiciones</a></p>
+      </div>
+    </details>
+  </div>
+</aside>
 
 <script>
 const CAPA_TXT = { rgb: "Color natural", ndvi: "Vigor de la vegetación", agua: "Superficie de agua", urbano: "Zona construida", inundacion: "Agua detectada por radar, últimos 60 días" };
@@ -177,7 +258,8 @@ const hoy = new Date().getFullYear();
 const S = { regiones: [], region: null, capa: "rgb", anio: hoy - 1, videos: [] };
 
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const map = L.map("map", { zoomControl: true, attributionControl: true, maxZoom: 19 });
+const map = L.map("map", { zoomControl: false, attributionControl: true, maxZoom: 19 });
+L.control.zoom({ position: "bottomright" }).addTo(map);
 // Mapa base: imagen satelital de Esri (sin llave) + capa de nombres por encima de los datos
 L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   { attribution: "Base: Esri, Maxar, Earthstar Geographics", maxZoom: 19, maxNativeZoom: 18 }).addTo(map);
@@ -194,8 +276,9 @@ async function cargarCapa() {
   document.getElementById("anioGrande").textContent = S.capa === "inundacion" ? "Hoy" : S.anio;
   document.getElementById("ladoIzq").textContent = `Satélite ${S.capa === "inundacion" ? "reciente" : S.anio}`;
   document.getElementById("capaTxt").textContent = `${CAPA_TXT[S.capa]} · ${r.nombre}`;
-  document.getElementById("anioTxt").textContent = S.anio;
+  document.getElementById("anioTxt").textContent = S.capa === "inundacion" ? "Hoy" : S.anio;
   document.getElementById("anio").disabled = S.capa === "inundacion";
+  document.getElementById("play").disabled = S.capa === "inundacion";
   const res = S.capa === "inundacion" ? "Sentinel-1, 10 m por píxel" : S.anio >= 2018 ? "Sentinel-2, 10 m por píxel" : "Landsat, 30 m por píxel";
   document.getElementById("resNota").textContent = `Resolución: ${res}. Al acercarte mucho la capa se aclara sola para mostrar el mapa base de alta resolución; ajústala con la opacidad.`;
   const cargando = document.getElementById("cargando"); cargando.style.display = "block";
@@ -278,9 +361,14 @@ function elegirRegion(r) {
   const b = [[y1, x1], [y2, x2]];
   if (marco) map.removeLayer(marco);
   marco = L.rectangle(b, { color: css("--sedimento"), weight: 2, fill: false }).addTo(map);
-  map.fitBounds(b, { padding: [30, 30] });
+  const movil = innerWidth <= 860;
+  map.fitBounds(b, { paddingTopLeft: [30, movil ? 140 : 90], paddingBottomRight: [movil ? 30 : 70, movil ? 200 : 130] });
+  document.getElementById("lugarNombre").textContent = r.nombre;
+  document.getElementById("lugarTema").textContent = r.tema;
   const rango = document.getElementById("anio");
   rango.min = r.sensor === "sentinel2" ? 2017 : 1990; rango.max = hoy;
+  document.getElementById("anioMin").textContent = rango.min; document.getElementById("anioMax").textContent = hoy;
+  if (movil) cerrarMenu();
   S.anio = Math.min(Math.max(S.anio, +rango.min), hoy); rango.value = S.anio;
   cargarCapa(); cargarSeries(); pintarVideos();
 }
@@ -303,7 +391,7 @@ opEl.addEventListener("input", () => { document.getElementById("opTxt").textCont
 map.on("zoomend", ajustarOpacidad);
 
 // Cortina de comparación: a la izquierda la capa satelital del año, a la derecha el mapa base de alta resolución
-const cortina = document.getElementById("cortina"), btnComp = document.getElementById("comparar");
+const cortina = document.getElementById("cortina"), botonesComp = [document.getElementById("comparar"), document.getElementById("comparar2")];
 let posCortina = 0.5;
 // clip-path en un pane de Leaflet es relativo a su caja (0×0), así que se recorta en coordenadas de capa
 function recortarPane() {
@@ -315,12 +403,15 @@ function recortarPane() {
   cortina.style.left = x + "px";
 }
 map.on("move zoom resize", recortarPane);
-btnComp.addEventListener("click", () => {
+botonesComp.forEach(btn => btn.addEventListener("click", () => {
   const on = !cortina.classList.contains("on");
-  cortina.classList.toggle("on", on); btnComp.setAttribute("aria-pressed", on);
-  btnComp.textContent = on ? "Cerrar comparación" : "Comparar con mapa base nítido";
+  cortina.classList.toggle("on", on);
+  botonesComp.forEach(b => b.setAttribute("aria-pressed", on));
+  botonesComp[0].textContent = on ? "Cerrar ✕" : "Comparar ⇔";
+  botonesComp[1].textContent = on ? "Cerrar comparación" : "Comparar con mapa base nítido";
+  if (on && innerWidth <= 860) cerrarMenu();
   recortarPane();
-});
+}));
 let arrastrando = false;
 const btnCort = document.getElementById("cortinaBtn");
 btnCort.addEventListener("pointerdown", e => { arrastrando = true; btnCort.setPointerCapture(e.pointerId); map.dragging.disable(); });
@@ -335,7 +426,49 @@ btnCort.addEventListener("keydown", e => {
   else if (e.key === "ArrowRight") posCortina = Math.min(.97, posCortina + .05); else return;
   e.preventDefault(); recortarPane();
 });
+// ---- Menú ----
+const abrir = document.getElementById("abrirMenu");
+function abrirMenu(seccion) {
+  document.body.classList.add("menu-abierto"); abrir.setAttribute("aria-expanded", "true");
+  if (seccion) { seccion.open = true; seccion.scrollIntoView({ block: "start" }); }
+  setTimeout(() => document.getElementById("cerrarMenu").focus(), 50);
+  setTimeout(() => map.invalidateSize(), 320);
+}
+function cerrarMenu() {
+  if (!document.body.classList.contains("menu-abierto")) return;
+  document.body.classList.remove("menu-abierto"); abrir.setAttribute("aria-expanded", "false");
+  setTimeout(() => map.invalidateSize(), 320);
+}
+abrir.addEventListener("click", () => document.body.classList.contains("menu-abierto") ? cerrarMenu() : abrirMenu());
+document.getElementById("cerrarMenu").addEventListener("click", () => { cerrarMenu(); abrir.focus(); });
+document.getElementById("velo").addEventListener("click", cerrarMenu);
+document.getElementById("lugarBtn").addEventListener("click", () => abrirMenu(document.getElementById("secRegiones")));
+addEventListener("keydown", e => { if (e.key === "Escape") cerrarMenu(); });
+
+// ---- Reproducir años: avanza cuando la capa del año termina de cargar ----
+let reproduciendo = false;
+const playBtn = document.getElementById("play"), playIco = document.getElementById("playIco");
+function pintarPlay() {
+  playIco.innerHTML = reproduciendo ? '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>' : '<path d="M7 4l13 8-13 8z"/>';
+  playBtn.setAttribute("aria-label", reproduciendo ? "Pausar" : "Reproducir años");
+}
+async function siguienteAnio() {
+  if (!reproduciendo) return;
+  const r = document.getElementById("anio");
+  if (S.anio >= +r.max) { reproduciendo = false; pintarPlay(); return; }
+  S.anio += S.region.sensor === "sentinel2" ? 1 : 2; if (S.anio > +r.max) S.anio = +r.max;
+  r.value = S.anio;
+  await cargarCapa();
+  if (satLayer) satLayer.once("load", () => setTimeout(siguienteAnio, 700)); else setTimeout(siguienteAnio, 1200);
+}
+playBtn.addEventListener("click", () => {
+  if (S.capa === "inundacion") return;
+  reproduciendo = !reproduciendo; pintarPlay();
+  if (reproduciendo) { const r = document.getElementById("anio"); if (S.anio >= +r.max) S.anio = +r.min - (S.region.sensor === "sentinel2" ? 1 : 2); siguienteAnio(); }
+});
+
 const rango = document.getElementById("anio");
+rango.addEventListener("pointerdown", () => { reproduciendo = false; pintarPlay(); });
 rango.addEventListener("input", () => { S.anio = +rango.value; document.getElementById("anioGrande").textContent = S.anio; document.getElementById("anioTxt").textContent = S.anio; });
 rango.addEventListener("change", cargarCapa);
 

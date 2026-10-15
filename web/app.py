@@ -77,4 +77,14 @@ def index():
     return FileResponse(STATIC / "index.html")
 
 
+@app.get("/privacidad")
+def privacidad():
+    return FileResponse(STATIC / "privacidad.html")
+
+
+@app.get("/condiciones")
+def condiciones():
+    return FileResponse(STATIC / "condiciones.html")
+
+
 app.mount("/static", StaticFiles(directory=STATIC), name="static")
