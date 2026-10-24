@@ -253,7 +253,7 @@
 const CAPA_TXT = { rgb: "Color natural", ndvi: "Vigor de la vegetación", agua: "Superficie de agua", urbano: "Zona construida", inundacion: "Agua detectada por radar, últimos 60 días" };
 const METRICA = { agua: ["Superficie de agua", "Kilómetros cuadrados de agua dentro del área, por año (MNDWI)."],
                   ndvi: ["Vigor de la vegetación", "NDVI medio del área, por año. Más alto indica más vegetación sana."],
-                  urbano: ["Crecimiento urbano", "Kilómetros cuadrados construidos dentro del área, por año (NDBI)."] };
+                  urbano: ["Crecimiento urbano", "Kilómetros cuadrados construidos dentro del área (GHSL, Comisión Europea). Hasta 2020 son datos observados; después, proyección."] };
 const hoy = new Date().getFullYear();
 const S = { regiones: [], region: null, capa: "rgb", anio: hoy - 1, videos: [] };
 

@@ -25,7 +25,7 @@ LINE = (95, 179, 196)
 CUENTA = "@caribe.sat"
 
 FONT_DIRS = ["/usr/share/fonts/truetype/dejavu", "/Library/Fonts", "C:/Windows/Fonts"]
-UNITS = {"agua": "km² de agua", "ndvi": "NDVI medio (vegetación)", "urbano": "km² urbanizados"}
+UNITS = {"agua": "km² de agua", "ndvi": "NDVI medio (vegetación)", "urbano": "km² construidos"}
 LAYER_TXT = {"rgb": "Color natural", "ndvi": "Vigor de la vegetación (NDVI)",
              "agua": "Superficie de agua (MNDWI)", "urbano": "Zona construida (NDBI)"}
 SOURCES = {"landsat": "Landsat 5/7/8/9 · USGS/NASA", "sentinel2": "Sentinel-2 · ESA Copernicus"}
@@ -159,7 +159,8 @@ def escena_anio(region, frames, idx, tile, z, progreso):
     if f["valor"] is not None:
         d.text((60, 1500), f"{f['valor']:,.2f} {UNITS[region['metrica']]}", font=F_STAT, fill=ACCENT)
     _sparkline(d, [fr["valor"] for fr in frames], idx, (60, 1590, W - 60, 1730))
-    d.text((60, 1790), f"Datos: {SOURCES[region['sensor']]}", font=F_SMALL, fill=MUTED)
+    fuente = SOURCES[region['sensor']] + (" · GHSL (JRC)" if region["metrica"] == "urbano" else "")
+    d.text((60, 1790), f"Datos: {fuente}", font=F_SMALL, fill=MUTED)
     d.text((60, 1832), "Procesado en Google Earth Engine", font=F_SMALL, fill=MUTED)
     d.text((W - 60, 1832), CUENTA, font=F_SMALL, fill=INK, anchor="ra")
     return im
@@ -308,5 +309,7 @@ def texto_publicacion(region, frames) -> str:
     return (f"{region['tema']} en {lugar} visto desde satélite, de {a} a {b}.{cifra}\n\n"
             f"¿Reconoces tu barrio? Cuéntanos en los comentarios y compártelo con alguien de {lugar}.\n\n"
             f"Mapa interactivo: caribesat.onrender.com\n"
-            f"Datos: {SOURCES[region['sensor']]}, procesados en Google Earth Engine.\n\n"
+            f"Datos: {SOURCES[region['sensor']]}"
+            + (", superficie construida GHSL de la Comisión Europea (JRC)" if region["metrica"] == "urbano" else "")
+            + ", procesados en Google Earth Engine.\n\n"
             + " ".join(dict.fromkeys(tags)))
