@@ -85,6 +85,10 @@ def cmd_video(cfg, region_id, upload=False):
 
 def cmd_reels(cfg, regiones: str):
     for rid in [x.strip() for x in regiones.split(",") if x.strip()]:
+        try:
+            cmd_series(cfg, rid)          # también deja listas las gráficas de la web
+        except Exception as e:
+            print(f"::warning title=Series {rid}::{type(e).__name__}: {str(e)[:200]}")
         cmd_video(cfg, rid, upload=False)
 
 

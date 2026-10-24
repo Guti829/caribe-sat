@@ -299,9 +299,12 @@ def texto_publicacion(region, frames) -> str:
     depto = {"barranquilla": "Atlántico", "puerto_colombia": "Atlántico", "cartagena": "Bolívar", "islas_rosario": "Bolívar",
              "santa_marta": "Magdalena", "cienaga_grande": "Magdalena", "riohacha": "LaGuajira", "alta_guajira": "LaGuajira",
              "valledupar": "Cesar", "monteria": "Córdoba", "sincelejo": "Sucre", "covenas": "Sucre",
-             "san_andres": "SanAndrés", "la_mojana": "LaMojana"}.get(region["id"], "Caribe")
+             "san_andres": "SanAndrés", "la_mojana": "LaMojana",
+             "bocas_ceniza": "RíoMagdalena", "magdalena_mompox": "RíoMagdalena", "canal_dique": "Bolívar",
+             "delta_sinu": "RíoSinú", "cienaga_zapatosa": "Cesar", "rio_rancheria": "LaGuajira"}.get(region["id"], "Caribe")
     tags = [f"#{lugar.replace(' ', '')}", f"#{depto}", "#ImágenesSatelitales",
-            "#CambioClimático" if region["metrica"] != "urbano" else "#CrecimientoUrbano", "#CaribeColombiano"]
+            ("#RíosDeColombia" if region.get("grupo") == "Ríos" else
+             "#CambioClimático" if region["metrica"] != "urbano" else "#CrecimientoUrbano"), "#CaribeColombiano"]
     return (f"{region['tema']} en {lugar} visto desde satélite, de {a} a {b}.{cifra}\n\n"
             f"¿Reconoces tu barrio? Cuéntanos en los comentarios y compártelo con alguien de {lugar}.\n\n"
             f"Mapa interactivo: caribesat.onrender.com\n"

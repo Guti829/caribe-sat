@@ -162,6 +162,77 @@ regiones:
     anio_inicio: 1990
     paso_anios: 2
 
+  # ---------- Ríos y humedales de la región Caribe ----------
+  # metrica "agua": km² de agua por año (MNDWI); muestra migración de cauces, deltas y ciénagas
+  - id: bocas_ceniza
+    nombre: Bocas de Ceniza, río Magdalena
+    grupo: Ríos
+    tema: Desembocadura del Magdalena
+    bbox: [-74.88, 10.95, -74.76, 11.12]
+    sensor: landsat
+    capa_video: rgb
+    metrica: agua
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: magdalena_mompox
+    nombre: Río Magdalena en Mompox
+    grupo: Ríos
+    tema: Cauce y ciénagas
+    bbox: [-74.52, 9.10, -74.30, 9.35]
+    sensor: landsat
+    capa_video: agua
+    metrica: agua
+    anio_inicio: 1990
+    paso_anios: 2
+    mar: false
+
+  - id: canal_dique
+    nombre: Canal del Dique, Bolívar
+    grupo: Ríos
+    tema: Sedimentos en la bahía
+    bbox: [-75.58, 10.12, -75.38, 10.32]
+    sensor: landsat
+    capa_video: rgb
+    metrica: agua
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: delta_sinu
+    nombre: Delta del río Sinú, Córdoba
+    grupo: Ríos
+    tema: Desembocadura del Sinú
+    bbox: [-75.99, 9.30, -75.80, 9.46]
+    sensor: landsat
+    capa_video: rgb
+    metrica: agua
+    anio_inicio: 1990
+    paso_anios: 2
+
+  - id: cienaga_zapatosa
+    nombre: Ciénaga de Zapatosa, río Cesar
+    grupo: Ríos
+    tema: Humedal y sequía
+    bbox: [-73.98, 9.00, -73.68, 9.28]
+    sensor: landsat
+    capa_video: agua
+    metrica: agua
+    anio_inicio: 1990
+    paso_anios: 2
+    mar: false
+
+  - id: rio_rancheria
+    nombre: Río Ranchería, La Guajira
+    grupo: Ríos
+    tema: Cauce en zona seca
+    bbox: [-72.98, 11.30, -72.80, 11.52]
+    sensor: landsat
+    capa_video: ndvi
+    metrica: agua
+    anio_inicio: 1990
+    paso_anios: 2
+    mar: false
+
 clima:
   anio_inicio: 1991
   climatologia: [1991, 2020]   # periodo de referencia para anomalías
