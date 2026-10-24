@@ -17,7 +17,7 @@
   "paso_anios": 2,
   "mar": false
  },
- "actualizado": "2026-10-19T17:15+00:00",
+ "actualizado": "2026-10-24T19:02+00:00",
  "lluvia": [
   {
    "fecha": "1991-01",
@@ -2155,5 +2155,75 @@
    "anomalia": -5.4
   }
  ],
- "sst": null
+ "sst": null,
+ "metrica_anual": [
+  {
+   "anio": 1990,
+   "valor": 3.906
+  },
+  {
+   "anio": 1994,
+   "valor": 0.77
+  },
+  {
+   "anio": 1996,
+   "valor": 1.685
+  },
+  {
+   "anio": 1998,
+   "valor": 5.163
+  },
+  {
+   "anio": 2000,
+   "valor": 4.045
+  },
+  {
+   "anio": 2002,
+   "valor": 6.282
+  },
+  {
+   "anio": 2004,
+   "valor": 5.49
+  },
+  {
+   "anio": 2006,
+   "valor": 6.158
+  },
+  {
+   "anio": 2008,
+   "valor": 6.428
+  },
+  {
+   "anio": 2010,
+   "valor": 7.803
+  },
+  {
+   "anio": 2012,
+   "valor": 6.539
+  },
+  {
+   "anio": 2014,
+   "valor": 6.119
+  },
+  {
+   "anio": 2016,
+   "valor": 6.887
+  },
+  {
+   "anio": 2018,
+   "valor": 8.215
+  },
+  {
+   "anio": 2020,
+   "valor": 7.906
+  },
+  {
+   "anio": 2022,
+   "valor": 5.517
+  },
+  {
+   "anio": 2024,
+   "valor": 4.398
+  }
+ ]
 }
