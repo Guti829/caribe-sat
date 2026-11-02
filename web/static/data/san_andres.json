@@ -16,7 +16,7 @@
   "anio_inicio": 1990,
   "paso_anios": 2
  },
- "actualizado": "2026-10-26T17:04+00:00",
+ "actualizado": "2026-11-02T20:35+00:00",
  "lluvia": [],
  "sst": [
   {
@@ -2158,6 +2158,11 @@
    "fecha": "2026-08",
    "valor": 28.73,
    "anomalia": 0.24
+  },
+  {
+   "fecha": "2026-09",
+   "valor": 29.17,
+   "anomalia": 0.21
   }
  ],
  "metrica_anual": [
